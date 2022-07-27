@@ -1,7 +1,7 @@
 // App.js
 
 /*
-    SETUP
+    SETUP   
 */
 // app.js
 
