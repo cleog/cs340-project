@@ -92,25 +92,23 @@ app.post('/add-book-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
-    // Capture NULL values
-    // let homeworld = parseInt(data.homeworld);
-    // if (isNaN(homeworld))
-    // {
-    //     homeworld = 'NULL'
-    // }
+    let patron_id = parseInt(data.patron_id)
 
-    // let age = parseInt(data.age);
-    // if (isNaN(age))
-    // {
-    //     age = 'NULL'
-    // }
+    let due_date = '\'' + data.due_date + '\''
 
-    if (data.patron_id == 'NULL')
-        data.due_date = 'NULL'
+    if (isNaN(patron_id)) {
+        patron_id = 'NULL'
+        due_date = 'NULL'
+    }
+    if (due_date === '\'\'') {
+        patron_id = 'NULL'
+        due_date = 'NULL'
+    }
+
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Books (title_name, genre_id, publisher_id, patron_id, due_date) VALUES ('${data.title_name}', '${data.genre_id}', '${data.publisher_id}', '${data.patron_id}', '${data.due_date}')`;
-console.log(query1)
+
+    query1 = `INSERT INTO Books (title_name, genre_id, publisher_id, patron_id, due_date) VALUES ('${data.title_name}', '${data.genre_id}', '${data.publisher_id}', ${patron_id}, ${due_date})`;
     db.pool.query(query1, function (error, rows, fields) {
 
         // Check to see if there was an error
@@ -229,9 +227,18 @@ app.put('/put-book-ajax', function (req, res, next) {
 
     let bookID = parseInt(data.book_id);
     let patronID = parseInt(data.patron_id);
-    let dueDate = data.due_date;
+    let dueDate = '\'' + data.due_date + '\''
+    if (isNaN(patronID)) {
+        patronID = 'NULL'
+        dueDate = 'NULL'
+    }
+    if (dueDate === '\'\'') {
+        patronID = 'NULL'
+        dueDate = 'NULL'
+    }
 
-    let queryUpdatePatronID = `UPDATE Books SET patron_id = ?, due_date = ? WHERE book_id = ?;`;
+    let queryUpdatePatronID = `UPDATE Books SET patron_id = ${patronID}, due_date = ${dueDate} WHERE book_id = ${data.book_id};`
+    // let queryUpdatePatronID = `UPDATE Books SET patron_id = ?, due_date = ? WHERE book_id = ?;`;
     // let queryUpdateDueDate = `UPDATE Books SET due_date = ? WHERE Books.book_id = ?`;
     let selectBook = `SELECT * FROM Books WHERE book_id = ?`
 
