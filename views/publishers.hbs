@@ -1,0 +1,57 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<a href="/">Home</a>
+<h1>Publishers</h1>
+
+{{!-- Create a table --}}
+<table id="authors">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Publisher ID</th>
+            <th>Publisher Name</th>
+            <th>Publisher Country</th>
+
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each publishers}}
+        <tr data-value={{this.publisher_id}}>
+            <td>{{this.publisher_id}}</td>
+            <td>{{this.publisher_name}}</td>
+            <td>{{this.publisher_country}}</td>
+            <td><button onclick="deleteAuthor({{this.publisher_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_publisher.js"></script>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add a Publisher</h2>
+<p>To add a new publisher, please enter their information below and click 'Submit'!</p>
+<form id="add-publisher-ajax">
+
+    <label for="input-publsiher_name">Publisher Name: </label>
+    <input type="text" name="input-publsiher_name" id="input-publsiher_name">
+   
+    
+    <label for="input-publisher_country">Publisher Country: </label>
+    <input type="text" name="input-publisher_country" id="input-publisher_country">
+
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_publisher.js"></script>
+
+

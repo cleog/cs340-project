@@ -1,0 +1,56 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<a href="/">Home</a>
+<h1>Books and Authors</h1>
+
+{{!-- Create a table --}}
+<table id="books_authors">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Book Author Id</th>
+            <th>Book ID</th>
+            <th>Author ID</th>
+
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each books_authors}}
+        <tr data-value={{this.book_author_id}}>
+            <td>{{this.book_author_id}}</td>
+            <td>{{this.book_id}}</td>
+            <td>{{this.author_id}}</td>
+            <td><button onclick="deleteBooksAuthors({{this.book_author_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_books_authors.js"></script>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add a Book-Author relationship</h2>
+<p>To add a new book-author relationship, please enter their IDs below and click 'Submit'!</p>
+<form id="add-author-ajax">
+
+    <label for="input-book_id_intersection">Book ID: </label>
+    <input type="number" name="input-book_id_intersection" id="input-book_id_intersection">
+   
+    
+    <label for="input-author_id_intersection">Author ID: </label>
+    <input type="number" name="input-author_id_intersection" id="input-author_id_intersection">
+
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_books_authors.js"></script>
+

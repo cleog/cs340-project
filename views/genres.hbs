@@ -1,0 +1,57 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<a href="/">Home</a>
+<h1>Genres</h1>
+
+{{!-- Create a table --}}
+<table id="genres">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Genre ID</th>
+            <th>Genre Name</th>
+            <th>Genre Description</th>
+
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each genres}}
+        <tr data-value={{this.genre_id}}>
+            <td>{{this.genre_id}}</td>
+            <td>{{this.genre_name}}</td>
+            <td>{{this.genre_description}}</td>
+            <td><button onclick="deleteAuthor({{this.genre_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_genre.js"></script>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add an Genre</h2>
+<p>To add a new genre, please enter their information below and click 'Submit'!</p>
+<form id="add-genre-ajax">
+
+    <label for="input-genre_name">Genre Name: </label>
+    <input type="text" name="input-genre_name" id="input-genre_name">
+   
+    
+    <label for="input-genre_description">Genre Description: </label>
+    <input type="text" name="input-genre_description" id="input-genre_description">
+
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_genre.js"></script>
+
+

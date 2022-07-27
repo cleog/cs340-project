@@ -1,0 +1,133 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- index.hbs -->
+{{!-- <h1>The server is running!</h1>
+<p>If you see this text, the server is <strong>definitely</strong> working!</p> --}}
+<a href="/">Home</a>
+<h1>Books</h1>
+
+{{!-- Create a table --}}
+<table id="books">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Book ID</th>
+            <th>Title Name</th>
+            <th>Genre ID</th>
+            <th>Publisher ID</th>
+            <th>Patron ID</th>
+            <th>Due Date</th>
+
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.book_id}}>
+            <td>{{this.book_id}}</td>
+            <td>{{this.title_name}}</td>
+            <td>{{this.genre_id}}</td>
+            <td>{{this.publisher_id}}</td>
+            <td>{{this.patron_id}}</td>
+             <td>{{this.due_date}}</td>
+            <td><button onclick="deleteBook({{this.book_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_book.js"></script>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add a Book</h2>
+<p>To add a new book, please enter their information below and click 'Submit'!</p>
+<form id="add-book-ajax">
+
+    <label for="input-title_name">Title Name: </label>
+    <input type="text" name="input-title_name" id="input-title_name">
+   
+    
+
+    <label for="input-genre_id">Genre Name: </label>
+    <select name="input-genre_id" id="input-genre_id">
+        <option value="test">Select a Genre</option>
+        {{#each genres}}
+        <option value="{{this.genre_id}}">{{this.genre_name}}</option>
+        {{/each}}
+    </select>
+   
+
+    <label for="input-publisher_id">Publisher ID: </label>
+    <select name="input-publisher_id" id="input-publisher_id">
+        <option value="test">Select a Publisher</option>
+        {{#each publishers}}
+        <option value="{{this.publisher_id}}">{{this.publisher_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-patron_id">Patron ID: </label>
+    <select name="input-patron_id" id="input-patron_id">
+        <option value="test">Select a Patron</option>
+        <option value="NULL">(None)</option>
+        {{#each patrons}}
+        <option value="{{this.patron_id}}">{{this.patron_last_name}}, {{this.patron_first_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-due_date">Due Date: </label>
+    <input type="date" name="input-due_date" id="input-due_date">
+
+
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_book.js"></script>
+
+
+<h2>Search for a Book</h2>
+<p>Search by title name using the field below. Partial title names are OK too!</p>
+<form id="search-book-html" method='GET' action='/'>
+    <label for="input-title_name">Search by Title Name: </label>
+    <input type="text" name="title_name" id="input-title_name-html-search">
+    <input type="submit">
+    <a href='/'><button>Reset</button></a>
+</form>
+
+<h2>Updating A Book Form</h2>
+<p>To update a specific book select their book ID from the drop-down menu on the left and their patron name from the drop down menu on the right and the due date on the far right</p>
+<form id="update-book-form-ajax">
+
+    <label for="input-book_id">Book ID: </label>
+    <select name="input-book_id" id="input-book_id-update">
+        <option>Select a Book ID</option>
+        {{#each data}}
+        <option value="{{this.book_id}}">{{this.book_id}}</option>
+        {{/each}}
+    </select>
+    {{!-- <input type="text" name="input-book_id" id="input-book_id-update"> --}}
+
+
+    <label for="input-patron_id">Patron: </label>
+    <select name="input-patron_id" id="input-patron_id-update">
+        <option>Select a Patron</option>
+        <option value="NULL">(None)</option>
+        {{#each patrons}}
+        <option value="{{this.patron_id}}">{{this.patron_last_name}}, {{this.patron_first_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-due_date">Due Date: </label>
+    <input type="date" name="input-due_date" id="input-due_date-update">
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_book.js"></script>

@@ -1,0 +1,62 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<a href="/">Home</a>
+<h1>Patrons</h1>
+
+{{!-- Create a table --}}
+<table id="patrons">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Patron ID</th>
+            <th>Patron First Name</th>
+            <th>Patron Last Name</th>
+            <th>Patron Phone Number</th>
+
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each patrons}}
+        <tr data-value={{this.patron_id}}>
+            <td>{{this.patron_id}}</td>
+            <td>{{this.patron_first_name}}</td>
+            <td>{{this.patron_last_name}}</td>
+            <td>{{this.patron_phone_number}}</td>
+            <td><button onclick="deletePatron({{this.patron_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_patron.js"></script>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add a Patron</h2>
+<p>To add a new patron, please enter their information below and click 'Submit'!</p>
+<form id="add-author-ajax">
+
+    <label for="input-patron_first_name">Patron First Name: </label>
+    <input type="text" name="input-patron_first_name" id="input-patron_first_name">
+   
+    
+    <label for="input-patron_last_name">Patron Last Name: </label>
+    <input type="text" name="input-patron_last_name" id="input-patron_last_name">
+
+    <label for="input-patron_phone_number">Patron Phone Number: </label>
+    <input type="text" name="input-patron_phone_number" id="input-patron_phone_number">
+
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_patron.js"></script>
+
+
