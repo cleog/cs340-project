@@ -22,73 +22,9 @@ var db = require('./database/db-connector')
 /*
     ROUTES
 */
-// app.js
 
-// app.get('/', function(req, res)
-//     {  
-//         let query1 = "SELECT * FROM Books;";               // Define our query
 
-//         db.pool.query(query1, function(error, rows, fields){    // Execute the query
-
-//             res.render('index', {data: rows});                  // Render the index.hbs file, and also send the renderer
-//         })                                                      // an object where 'data' is equal to the 'rows' we
-//     });                                                         // received back from the query                                       // will process this file, before sending the finished HTML to the client.
-// app.js - ROUTES section
-
-// app.post('/add-book-ajax', function(req, res) 
-// {
-//     // Capture the incoming data and parse it back to a JS object
-//     let data = req.body;
-
-//     // Capture NULL values
-//     let patron_id = parseInt(data.patron_id);
-//     if (isNaN(patron_id))
-//     {
-//         patron_id = 'NULL'
-//     }
-
-//     let due_date = parseInt(data.due_date);
-//     if (isNaN(due_date))
-//     {
-//         due_date = 'NULL'
-//     }
-
-//     // Create the query and run it on the database
-//     // query1 = `INSERT INTO Books (book_id, publisher_id, genre_id, title_name, due_date, patron_id) VALUES ('${data.book_id}', '${data.publisher_id}', '${data.genre_id}', '${data.title_name}', '${data.due_date}', '${data.patron_id}')`;
-//     query1 = `INSERT INTO Books (publisher_id, genre_id, title_name, due_date, patron_id) VALUES ('${data.publisher_id}', '${data.genre_id}', '${data.title_name}', '${data.due_date}', '${data.patron_id}')`;
-//     db.pool.query(query1, function(error, rows, fields){
-
-//         // Check to see if there was an error
-//         if (error) {
-
-//             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-//             console.log(error)
-//             res.sendStatus(400);
-//         }
-//         else
-//         {
-//             // If there was no error, perform a SELECT * on bsg_people
-//             query2 = `SELECT * FROM Books;`;
-//             db.pool.query(query2, function(error, rows, fields){
-
-//                 // If there was an error on the second query, send a 400
-//                 if (error) {
-
-//                     // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-//                     console.log(error);
-//                     res.sendStatus(400);
-//                 }
-//                 // If all went well, send the results of the query back.
-//                 else
-//                 {
-//                     res.send(rows);
-//                 }
-//             })
-//         }
-//     })
-// });
-
-app.post('/add-book-ajax', function (req, res) {
+app.post('/add-book-ajax', function (req, res) {  
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
@@ -121,6 +57,157 @@ app.post('/add-book-ajax', function (req, res) {
         else {
             // If there was no error, perform a SELECT * on bsg_people
             query2 = `SELECT * FROM Books;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+app.post('/add-genre-ajax', function (req, res) {  
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+
+    // Create the query and run it on the database
+
+    query1 = `INSERT INTO Genres (genre_name, genre_description) VALUES ('${data.genre_name}', '${data.genre_description}')`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on Genres
+            query2 = `SELECT * FROM Genres;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+app.post('/add-author-ajax', function (req, res) {  
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+
+    // Create the query and run it on the database
+
+    query1 = `INSERT INTO Authors (author_first_name, author_last_name) VALUES ('${data.author_first_name}', '${data.author_last_name}')`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on Genres
+            query2 = `SELECT * FROM Authors;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+app.post('/add-patron-ajax', function (req, res) {  
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+
+    query1 = `INSERT INTO Patrons (patron_first_name, patron_last_name, patron_phone_number) VALUES ('${data.patron_first_name}', '${data.patron_last_name}', '${data.patron_phone_number}')`;
+    // patron_phone_number is varchar
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on Genres
+            query2 = `SELECT * FROM Patrons;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+app.post('/add-publisher-ajax', function (req, res) {  
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+
+    query1 = `INSERT INTO Publishers (publisher_name, publisher_country) VALUES ('${data.publisher_name}', '${data.publisher_country}')`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on Genres
+            query2 = `SELECT * FROM Publishers;`;
             db.pool.query(query2, function (error, rows, fields) {
 
                 // If there was an error on the second query, send a 400
@@ -295,6 +382,74 @@ app.delete('/delete-book-ajax/', function (req, res, next) {
                     res.sendStatus(204);
                 }
             })
+        }
+    })
+});
+
+app.delete('/delete-genre-ajax/', function (req, res, next) {
+    let data = req.body;
+    let genreID = parseInt(data.id);
+    let deleteGenres = `DELETE FROM Genres WHERE genre_id = ?`;
+
+
+    // Run the 1st query
+    db.pool.query(deleteGenres, [genreID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+    })
+});
+
+app.delete('/delete-author-ajax/', function (req, res, next) {
+    let data = req.body;
+    let authorID = parseInt(data.id);
+    let deleteAuthors = `DELETE FROM Authors WHERE author_id = ?`;
+
+
+    // Run the 1st query
+    db.pool.query(deleteAuthors, [authorID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+    })
+});
+
+app.delete('/delete-patron-ajax/', function (req, res, next) {
+    let data = req.body;
+    let patronID = parseInt(data.id);
+    let deletePatrons = `DELETE FROM Patrons WHERE patron_id = ?`;
+
+
+    // Run the 1st query
+    db.pool.query(deletePatrons, [patronID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+    })
+});
+
+app.delete('/delete-publisher-ajax/', function (req, res, next) {
+    let data = req.body;
+    let publisherID = parseInt(data.id);
+    let deletePublishers = `DELETE FROM Publishers WHERE publisher_id = ?`;
+
+
+    // Run the 1st query
+    db.pool.query(deletePublishers, [publisherID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
         }
     })
 });
