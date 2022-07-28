@@ -3,27 +3,25 @@
 <h1>Books and Authors</h1>
 
 {{!-- Create a table --}}
-<table id="books_authors">
+<table id="books-authors-table">
 
     {{!-- Header section --}}
     <thead>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
+        {{!-- Table row section --}}
         <tr>
-            <th>Book Author Id</th>
+            <th>Book-Author ID</th>
             <th>Book ID</th>
             <th>Author ID</th>
-
-            <th>delete</th>
+            <th>Delete</th>
         </tr>
     </thead>
 
     {{!-- Body section --}}
     <tbody>
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each books_authors}}
+        {{!-- For each row, print the book_author_id, book_id, and author_id, in order --}}
+        {{#each data}}
         <tr data-value={{this.book_author_id}}>
             <td>{{this.book_author_id}}</td>
             <td>{{this.book_id}}</td>
@@ -35,18 +33,25 @@
 </table>
 <script src="./js/delete_books_authors.js"></script>
 
-{{!-- Form to add a record to the table  --}}
-<h2>Add a Book-Author relationship</h2>
-<p>To add a new book-author relationship, please enter their IDs below and click 'Submit'!</p>
-<form id="add-author-ajax">
-
-    <label for="input-book_id_intersection">Book ID: </label>
-    <input type="number" name="input-book_id_intersection" id="input-book_id_intersection">
-   
+{{!-- Form to add a record to the table using AJAX --}}
+<h2>Associate an Author with a Book</h2>
+<p>To associate an author with a book, please select a Book ID and Author ID from the below drop-downs and click 'Submit'!</p>
+<form id="add-books-authors-form-ajax">
+    <label for="input-book-id">Book ID: </label>
+    <select name="input-book-id" id="input-book-id">
+        <option value="">Select a Book ID</option>
+        {{#each books}}
+        <option value="{{this.book_id}}">{{this.book_id}}: {{this.title_name}}</option>
+        {{/each}}
+    </select>
     
-    <label for="input-author_id_intersection">Author ID: </label>
-    <input type="number" name="input-author_id_intersection" id="input-author_id_intersection">
-
+    <label for="input-author-id">Author ID: </label>
+    <select name="input-author-id" id="input-author-id">
+        <option value="">Select an Author ID</option>
+        {{#each authors}}
+        <option value="{{this.author_id}}">{{this.author_id}}: {{this.author_first_name}} {{this.author_last_name}}</option>
+        {{/each}}
+    </select>
 
     <input type="submit">
 </form>
@@ -54,3 +59,27 @@
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_books_authors.js"></script>
 
+<h2>Update an Existing Author Associated with a Book</h2>
+<p>To update the author that is currently associated with a book, select the Book-Author ID you'd like to modify from the drop-down menu on the left and the new Author ID from the drop down menu on the right.</p>
+<form id="update-books-authors-form-ajax">
+
+    <label for="input-book-author-id">Book-Author ID: </label>
+    <select name="input-book-author-id" id="input-book-author-id-update">
+        <option value="">Select a Book-Author ID</option>
+        {{#each data}}
+        <option value="{{this.book_author_id}}">{{this.book_author_id}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-author-id">Author ID: </label>
+    <select name="input-author-id" id="input-author-id-update">
+        <option>Select an Author ID</option>
+        {{#each authors}}
+        <option value="{{this.author_id}}">{{this.author_id}}: {{this.author_first_name}} {{this.author_last_name}}</option>
+        {{/each}}
+    </select>
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_books_authors.js"></script>
