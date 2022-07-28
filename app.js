@@ -213,14 +213,6 @@ app.get('/patrons', function (req, res) {
         res.render('patrons', {patrons: patron_rows});                
         })                                                      
     });  
-    
-app.get('/books_authors', function (req, res) {
-    let query1= "SELECT book_author_id, book_id, author_id FROM Books_Authors;";
-    db.pool.query(query1, (error, books_authors_rows, fields) => {
-        res.render('books_authors', {books_authors: books_authors_rows});                
-        })                                                      
-    });  
-
 
 app.put('/put-book-ajax', function (req, res, next) {
     let data = req.body;
@@ -298,6 +290,166 @@ app.delete('/delete-book-ajax/', function (req, res, next) {
         }
     })
 });
+
+// BOOKS_AUTHORS ROUTES
+
+/*
+app.get('/books_authors', function (req, res) {
+    let query1= "SELECT book_author_id, book_id, author_id FROM Books_Authors;";
+    db.pool.query(query1, (error, books_authors_rows, fields) => {
+        res.render('books_authors', {books_authors: books_authors_rows});                
+        })                                                      
+    });  
+*/
+
+// GET ROUTES
+app.get('/books_authors', function(req, res)
+{
+    // Declare Query 1
+    let query1 = "SELECT * FROM Books_Authors;";
+
+    // Declare Query 2
+    let query2 = "SELECT * FROM Books;";
+
+    // Declare Query 3
+    let query3 = "SELECT * FROM Authors"
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Save the books_authors
+        let books_authors = rows;
+
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+
+            // Save the books
+            let books = rows;
+
+            // Run the third query
+            db.pool.query(query3, (error, rows, fields) => {
+
+                // Save the authors
+                let authors = rows;
+                return res.render('books_authors', {data: books_authors, books: books, authors: authors});
+            })
+        })
+    })
+});
+
+// POST ROUTES
+app.post('/add-books-authors-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Capture NULL values
+    let book_id = parseInt(data.book_id);
+    if (isNaN(book_id))
+    {
+        book_id = 'NULL'
+    }
+
+    let author_id = parseInt(data.author_id);
+    if (isNaN(author_id))
+    {
+        author_id = 'NULL'
+    }
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Books_Authors (book_id, author_id) VALUES ('${data.book_id}', '${data.author_id}')`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT * FROM Books_Authors;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+// DELETE ROUTES
+
+app.delete('/delete-books-authors-ajax/', function(req, res, next){
+    let data = req.body;
+    let book_author_id = parseInt(data.book_author_id);
+    let deleteBooks_Authors = `DELETE FROM Books_Authors WHERE book_author_id = ?`;
+  
+  
+    // Run the 1st query
+    db.pool.query(deleteBooks_Authors, [book_author_id], function(error, rows, fields){
+        if (error) {
+  
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        }
+        
+        else {
+            res.sendStatus(204);
+        }
+
+    })
+});
+
+// PUT ROUTES
+
+app.put('/put-books-authors-ajax', function(req,res,next){
+    let data = req.body;
+  
+    let book_author_id = parseInt(data.book_author_id);
+    let author_id = parseInt(data.author_id);
+  
+    let queryUpdateAuthor = `UPDATE Books_Authors SET author_id = ? WHERE book_author_id = ?`;
+    let selectAuthor = `SELECT * FROM Authors WHERE author_id = ?`
+  
+          // Run the 1st query
+          db.pool.query(queryUpdateAuthor, [author_id, book_author_id], function(error, rows, fields){
+              if (error) {
+  
+              // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+              console.log(error);
+              res.sendStatus(400);
+              }
+  
+              // If there was no error, we run our second query and return that data so we can use it to update the people's
+              // table on the front-end
+              else
+              {
+                  // Run the second query
+                  db.pool.query(selectAuthor, [author_id], function(error, rows, fields) {
+  
+                      if (error) {
+                          console.log(error);
+                          res.sendStatus(400);
+                      } else {
+                          res.send(rows);
+                      }
+                  })
+              }
+  })});
 
 /*
 LISTENER
