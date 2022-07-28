@@ -1,3 +1,11 @@
+// Citation for the code in this file:
+//     Code is copied from, adapted from, and based on:
+//     Source Title: nodejs-starter-app
+//     Author(s): gkochera (George Kochera), Cortona1, currym-osu (Dr. Michael Curry), dmgs11
+//     Source Type: source code and information guide
+//     Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+//     Date Accessed: 7/25/2022
+
 // Get the objects we need to modify
 let updateBookForm = document.getElementById('update-book-form-ajax');
 
