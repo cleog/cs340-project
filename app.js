@@ -150,12 +150,12 @@ app.get('/books', function (req, res) {
 
     // If there is no query string, we just perform a basic SELECT
     if (req.query.title_name === undefined) {
-        query1 = "SELECT book_id, title_name, genre_id, publisher_id, patron_id, due_date FROM Books;";
+        query1 = "SELECT * FROM Books;";
     }
 
     // If there is a query string, we assume this is a search, and return desired results
     else {
-        query1 = `SELECT book_id, title_name, genre_id, publisher_id, patron_id, due_date FROM Books WHERE title_name LIKE "${req.query.title_name}%"`
+        query1 = `SELECT * FROM Books WHERE title_name LIKE "${req.query.title_name}%"`
     }
 
     // These queries are for dropdown data
@@ -181,7 +181,7 @@ app.get('/books', function (req, res) {
 
 app.get('/authors', function (req, res) {
     // Declare Query 1
-    let query1 = "SELECT author_id, author_first_name, author_last_name FROM Authors;";
+    let query1 = "SELECT * FROM Authors;";
     db.pool.query(query1, (error, author_rows, fields) => {
         res.render('authors', {authors: author_rows});                  
         })                                                    
@@ -190,7 +190,7 @@ app.get('/authors', function (req, res) {
 
 app.get('/genres', function (req, res) {
     // Declare Query 1
-    let query1 = "SELECT genre_id, genre_name, genre_description FROM Genres;";
+    let query1 = "SELECT * FROM Genres;";
     db.pool.query(query1, (error, genre_rows, fields) => {
         res.render('genres', {genres: genre_rows});                  
     })                                                      
@@ -199,7 +199,7 @@ app.get('/genres', function (req, res) {
 
 app.get('/publishers', function (req, res) {
     // Declare Query 1
-    let query1 = "SELECT publisher_id, publisher_name, publisher_country FROM Publishers;";
+    let query1 = "SELECT * FROM Publishers;";
     db.pool.query(query1, (error, publisher_rows, fields) => {
         res.render('publishers', {publishers: publisher_rows});                  
     })                                                      
@@ -208,7 +208,7 @@ app.get('/publishers', function (req, res) {
 
 app.get('/patrons', function (req, res) {
     // Declare Query 1
-    let query1= "SELECT patron_id, patron_first_name, patron_last_name, patron_phone_number from Patrons;";
+    let query1= "SELECT * from Patrons;";
     db.pool.query(query1, (error, patron_rows, fields) => {
         res.render('patrons', {patrons: patron_rows});                
         })                                                      
@@ -293,15 +293,6 @@ app.delete('/delete-book-ajax/', function (req, res, next) {
 
 // BOOKS_AUTHORS ROUTES
 
-/*
-app.get('/books_authors', function (req, res) {
-    let query1= "SELECT book_author_id, book_id, author_id FROM Books_Authors;";
-    db.pool.query(query1, (error, books_authors_rows, fields) => {
-        res.render('books_authors', {books_authors: books_authors_rows});                
-        })                                                      
-    });  
-*/
-
 // GET ROUTES
 app.get('/books_authors', function(req, res)
 {
@@ -309,10 +300,10 @@ app.get('/books_authors', function(req, res)
     let query1 = "SELECT * FROM Books_Authors;";
 
     // Declare Query 2
-    let query2 = "SELECT * FROM Books;";
+    let query2 = "SELECT book_id, title_name FROM Books;";
 
     // Declare Query 3
-    let query3 = "SELECT * FROM Authors"
+    let query3 = "SELECT author_id, author_first_name, author_last_name FROM Authors"
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields){
