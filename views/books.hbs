@@ -74,7 +74,7 @@
     <label for="input-patron_id">Patron ID: </label>
     <select name="input-patron_id" id="input-patron_id">
         <option value="test">Select a Patron</option>
-        <option value="NULL">(None)</option>
+        <option value=NULL>(None)</option>
         {{#each patrons}}
         <option value="{{this.patron_id}}">{{this.patron_last_name}}, {{this.patron_first_name}}</option>
         {{/each}}
@@ -94,7 +94,7 @@
 
 <h2>Search for a Book</h2>
 <p>Search by title name using the field below. Partial title names are OK too!</p>
-<form id="search-book-html" method='GET' action='/'>
+<form id="search-book-html" method='GET' action='/books'>
     <label for="input-title_name">Search by Title Name: </label>
     <input type="text" name="title_name" id="input-title_name-html-search">
     <input type="submit">
@@ -118,7 +118,7 @@
     <label for="input-patron_id">Patron: </label>
     <select name="input-patron_id" id="input-patron_id-update">
         <option>Select a Patron</option>
-        <option value="NULL">(None)</option>
+        <option value=NULL>(None)</option>
         {{#each patrons}}
         <option value="{{this.patron_id}}">{{this.patron_last_name}}, {{this.patron_first_name}}</option>
         {{/each}}

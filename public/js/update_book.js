@@ -1,6 +1,5 @@
 // Get the objects we need to modify
 let updateBookForm = document.getElementById('update-book-form-ajax');
-console.log("I AM ALIVE!!!")
 
 // Modify the objects we need
 updateBookForm.addEventListener("submit", function (e) {
