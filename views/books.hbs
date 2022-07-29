@@ -54,7 +54,7 @@
 
 {{!-- Form to add a record to the table  --}}
 <h2>Add a Book</h2>
-<p>To add a new book, please enter their information below and click 'Submit'!</p>
+<p>To add a new book, please enter their information below and click 'Submit'! If the book is not checked out, select None for Patron and leave Due Date blank.</p>
 <form id="add-book-ajax">
 
     <label for="input-title_name">Title Name: </label>
@@ -110,7 +110,8 @@
 </form>
 
 <h2>Updating A Book Form</h2>
-<p>To update a specific book select their book ID from the drop-down menu on the left and their patron name from the drop down menu on the right and the due date on the far right</p>
+<p>To update a specific book select their Book ID from the drop-down menu on the left and their Patron Name from the drop down menu in the middle and the Due Date on the right.</p>
+<p>To check out a book, add the Patron and Due Date. To return a book, select Patron as None and leave Due Date blank.</p>
 <form id="update-book-form-ajax">
 
     <label for="input-book_id">Book ID: </label>

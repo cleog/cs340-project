@@ -36,7 +36,7 @@
             <td>{{this.genre_id}}</td>
             <td>{{this.genre_name}}</td>
             <td>{{this.genre_description}}</td>
-            <td><button onclick="deleteAuthor({{this.genre_id}})">Delete</button></td>
+            <td><button onclick="deleteGenre({{this.genre_id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -44,7 +44,7 @@
 <script src="./js/delete_genre.js"></script>
 
 {{!-- Form to add a record to the table  --}}
-<h2>Add an Genre</h2>
+<h2>Add a Genre</h2>
 <p>To add a new genre, please enter their information below and click 'Submit'!</p>
 <form id="add-genre-ajax">
 

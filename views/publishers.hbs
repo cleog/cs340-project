@@ -36,7 +36,7 @@
             <td>{{this.publisher_id}}</td>
             <td>{{this.publisher_name}}</td>
             <td>{{this.publisher_country}}</td>
-            <td><button onclick="deleteAuthor({{this.publisher_id}})">Delete</button></td>
+            <td><button onclick="deletePublisher({{this.publisher_id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -49,7 +49,7 @@
 <form id="add-publisher-ajax">
 
     <label for="input-publsiher_name">Publisher Name: </label>
-    <input type="text" name="input-publsiher_name" id="input-publsiher_name">
+    <input type="text" name="input-publsiher_name" id="input-publisher_name">
    
     
     <label for="input-publisher_country">Publisher Country: </label>
