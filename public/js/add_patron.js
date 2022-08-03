@@ -17,6 +17,50 @@ addPatronForm.addEventListener("submit", function (e) {
     let patronLastNameValue = inputPatronLastName.value;
     let patronPhoneNumberValue = inputPatronPhoneNumber.value;
 
+    // Data Validation
+
+    if (!patronFirstNameValue && !patronLastNameValue && !patronPhoneNumberValue)
+    {
+        alert("Patron First Name, Last Name, and Phone Number not entered")
+        return;
+    }
+
+    if (!patronFirstNameValue && !patronLastNameValue)
+    {
+        alert("Patron First Name and Last Name not entered")
+        return;
+    }
+
+    if (!patronLastNameValue && !patronPhoneNumberValue)
+    {
+        alert("Patron Last Name and Phone Number not entered")
+        return;
+    }
+
+    if (!patronFirstNameValue && !patronPhoneNumberValue)
+    {
+        alert("Patron First Name and Phone Number not entered")
+        return;
+    }
+
+    if (!patronFirstNameValue)
+    {
+        alert("Patron First Name not entered")
+        return;
+    }
+
+    if (!patronLastNameValue)
+    {
+        alert("Patron Last Name not entered")
+        return;
+    }
+
+    if (!patronPhoneNumberValue)
+    {
+        alert("Patron Phone Number not entered")
+        return;
+    }
+
     // Put our data we want to send in a javascript object
     // having this as data may cause an issue?
     let data = {

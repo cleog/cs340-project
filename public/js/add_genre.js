@@ -15,6 +15,19 @@ addGenreForm.addEventListener("submit", function (e) {
     let genreNameValue = inputGenreName.value;
     let genreDescriptionValue = inputGenreDescription.value;
 
+    // Data Validation
+    if (!genreNameValue)
+    {
+        alert("Genre Name not entered")
+        return;
+    }
+
+    if (!genreDescriptionValue)
+    {
+        alert("Genre Description not entered")
+        return;
+    }
+
     // Put our data we want to send in a javascript object
     // having this as data may cause an issue?
     let data = {
@@ -61,6 +74,7 @@ addRowToTable = (data) => {
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
+    
 
     // Create a row and 4 cells
     let row = document.createElement("TR");

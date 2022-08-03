@@ -25,20 +25,19 @@ updateBookForm.addEventListener("submit", function (e) {
     let patronValue = inputPatron.value;
     let dueDateValue = inputDueDate.value;
     
-    // currently the database table for bsg_people does not allow updating values to NULL
-    // so we must abort if being bassed NULL for homeworld
+    // data validation 
 
     if (isNaN(bookIDValue)) 
     {
+        alert("Book ID not entered")
         return;
     }
-
 
     // Put our data we want to send in a javascript object
     let data = {
         book_id: bookIDValue,
         patron_id: patronValue,
-        due_date: dueDateValue
+        due_date: dueDateValue.substring(0, 10) // not working?
     }
     
     // Setup our AJAX request

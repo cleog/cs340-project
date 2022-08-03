@@ -6,9 +6,42 @@
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
         Date Accessed: 7/25/2022 --}}
 
+<link rel="stylesheet" href="./css/home.css">
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<a href="/">Home</a>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/books">Books</a></li>
+<li><a href="/genres">Genres</a></li>
+<li><a href="/publishers">Publishers</a></li>
+<li><a href="/authors">Authors</a></li>
+<li><a href="/books_authors">Books and their Authors</a></li>
+</ul>
 <h1>Patrons</h1>
+
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add a Patron</h2>
+<p>To add a new patron, please enter their information below and click 'Submit'!.</p>
+<form id="add-patron-ajax">
+
+    <label for="input-patron_first_name">Patron First Name: </label>
+    <input type="text" name="input-patron_first_name" id="input-patron_first_name">
+   
+    
+    <label for="input-patron_last_name">Patron Last Name: </label>
+    <input type="text" name="input-patron_last_name" id="input-patron_last_name">
+
+    <label for="input-patron_phone_number">Patron Phone Number: </label>
+    <input type="text" name="input-patron_phone_number" id="input-patron_phone_number">
+
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_patron.js"></script>
+
 
 {{!-- Create a table --}}
 <table id="patrons">
@@ -44,27 +77,3 @@
     </tbody>
 </table>
 <script src="./js/delete_patron.js"></script>
-
-{{!-- Form to add a record to the table  --}}
-<h2>Add a Patron</h2>
-<p>To add a new patron, please enter their information below and click 'Submit'!</p>
-<form id="add-patron-ajax">
-
-    <label for="input-patron_first_name">Patron First Name: </label>
-    <input type="text" name="input-patron_first_name" id="input-patron_first_name">
-   
-    
-    <label for="input-patron_last_name">Patron Last Name: </label>
-    <input type="text" name="input-patron_last_name" id="input-patron_last_name">
-
-    <label for="input-patron_phone_number">Patron Phone Number: </label>
-    <input type="text" name="input-patron_phone_number" id="input-patron_phone_number">
-
-
-    <input type="submit">
-</form>
-
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_patron.js"></script>
-
-

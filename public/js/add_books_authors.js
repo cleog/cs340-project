@@ -23,6 +23,23 @@ addBooksAuthorsForm.addEventListener("submit", function (e) {
     let bookIDValue = inputBookID.value;
     let authorIDValue = inputAuthorID.value;
 
+    // Data Validation 
+    if (!bookIDValue && !authorIDValue)
+    {
+        alert("Book ID and Genre ID not entered")
+        return;
+    }
+    if (!bookIDValue)
+    {
+        alert("Book ID not entered")
+        return;
+    }
+    if (!authorIDValue)
+    {
+        alert("Author ID not entered")
+        return;
+    }
+
     // Put our data we want to send in a javascript object
     let data = {
         book_id: bookIDValue,

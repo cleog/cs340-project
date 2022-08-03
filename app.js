@@ -63,7 +63,7 @@ app.post('/add-book-ajax', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on Books
             query2 = `SELECT * FROM Books;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -265,7 +265,7 @@ app.get('/books', function (req, res) {
             db.pool.query(queryPatrons, (error, patron_rows, fields) => {
                 db.pool.query(queryPublishers, (error, publisher_rows, fields) => {
                     db.pool.query(queryAuthors, (error, author_rows, fields) => {
-                        return res.render('books', { data: book_rows, genres: genre_rows, patrons: patron_rows, publishers: publisher_rows, authors: author_rows });
+                        return res.render('books', { books: book_rows, genres: genre_rows, patrons: patron_rows, publishers: publisher_rows, authors: author_rows }); //change data to books
                     })
                 })
             })

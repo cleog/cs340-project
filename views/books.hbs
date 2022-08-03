@@ -6,51 +6,23 @@
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
         Date Accessed: 7/25/2022 --}}
 
+<link rel="stylesheet" href="./css/home.css">
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <!-- index.hbs -->
 {{!-- <h1>The server is running!</h1>
 <p>If you see this text, the server is <strong>definitely</strong> working!</p> --}}
-<a href="/">Home</a>
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/genres">Genres</a></li>
+<li><a href="/patrons">Patrons</a></li>
+<li><a href="/publishers">Publishers</a></li>
+<li><a href="/authors">Authors</a></li>
+<li><a href="/books_authors">Books and their Authors</a></li>
+</ul>
 <h1>Books</h1>
 
-{{!-- Create a table --}}
-<table id="books">
-
-    {{!-- Header section --}}
-    <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            <th>Book ID</th>
-            <th>Title Name</th>
-            <th>Genre ID</th>
-            <th>Publisher ID</th>
-            <th>Patron ID</th>
-            <th>Due Date</th>
-
-            <th>delete</th>
-        </tr>
-    </thead>
-
-    {{!-- Body section --}}
-    <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each data}}
-        <tr data-value={{this.book_id}}>
-            <td>{{this.book_id}}</td>
-            <td>{{this.title_name}}</td>
-            <td>{{this.genre_id}}</td>
-            <td>{{this.publisher_id}}</td>
-            <td>{{this.patron_id}}</td>
-             <td>{{this.due_date}}</td>
-            <td><button onclick="deleteBook({{this.book_id}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_book.js"></script>
 
 {{!-- Form to add a record to the table  --}}
 <h2>Add a Book</h2>
@@ -89,9 +61,7 @@
     </select>
 
     <label for="input-due_date">Due Date: </label>
-    <input type="date" name="input-due_date" id="input-due_date">
-
-
+    <input type="date" name="input-due_date" id="input-due_date" min="2022-08-08">
 
     <input type="submit">
 </form>
@@ -114,17 +84,17 @@
 <p>To check out a book, add the Patron and Due Date. To return a book, select Patron as None and leave Due Date blank.</p>
 <form id="update-book-form-ajax">
 
-    <label for="input-book_id">Book ID: </label>
+    <label for="input-book_id-update">Book ID: </label>
     <select name="input-book_id" id="input-book_id-update">
         <option>Select a Book ID</option>
-        {{#each data}}
+        {{#each books}}
         <option value="{{this.book_id}}">{{this.book_id}}</option>
         {{/each}}
     </select>
     {{!-- <input type="text" name="input-book_id" id="input-book_id-update"> --}}
 
 
-    <label for="input-patron_id">Patron: </label>
+    <label for="input-patron_id-update">Patron: </label>
     <select name="input-patron_id" id="input-patron_id-update">
         <option>Select a Patron</option>
         <option value=NULL>(None)</option>
@@ -133,10 +103,50 @@
         {{/each}}
     </select>
 
-    <label for="input-due_date">Due Date: </label>
-    <input type="date" name="input-due_date" id="input-due_date-update">
+    <label for="input-due_date-update">Due Date: </label>
+    <input type="date" name="input-due_date" id="input-due_date-update" min="2022-08-08">
+
     <input type="submit">
 
 </form>
 
 <script src="./js/update_book.js"></script>
+
+{{!-- Create a table --}}
+<table id="books">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>Book ID</th>
+            <th>Title Name</th>
+            <th>Genre ID</th>
+            <th>Publisher ID</th>
+            <th>Patron ID</th>
+            <th>Due Date</th>
+
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each books}}
+        <tr data-value={{this.book_id}}>
+            <td>{{this.book_id}}</td>
+            <td>{{this.title_name}}</td>
+            <td>{{this.genre_id}}</td>
+            <td>{{this.publisher_id}}</td>
+            <td>{{this.patron_id}}</td>
+             <td>{{this.due_date}}</td> 
+            <td><button onclick="deleteBook({{this.book_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_book.js"></script>

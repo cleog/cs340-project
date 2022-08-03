@@ -6,9 +6,39 @@
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
         Date Accessed: 7/25/2022 --}}
 
+
+<link rel="stylesheet" href="./css/home.css">
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<a href="/">Home</a>
+
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/books">Books</a></li>
+<li><a href="/patrons">Patrons</a></li>
+<li><a href="/publishers">Publishers</a></li>
+<li><a href="/authors">Authors</a></li>
+<li><a href="/books_authors">Books and their Authors</a></li>
+</ul>
 <h1>Genres</h1>
+
+{{!-- Form to add a record to the table  --}}
+<h2>Add a Genre</h2>
+<p>To add a new genre, please enter their information below and click 'Submit'!</p>
+<form id="add-genre-ajax">
+
+    <label for="input-genre_name">Genre Name: </label>
+    <input type="text" name="input-genre_name" id="input-genre_name">
+   
+    
+    <label for="input-genre_description">Genre Description: </label>
+    <input type="text" name="input-genre_description" id="input-genre_description">
+
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_genre.js"></script>
 
 {{!-- Create a table --}}
 <table id="genres">
@@ -42,24 +72,4 @@
     </tbody>
 </table>
 <script src="./js/delete_genre.js"></script>
-
-{{!-- Form to add a record to the table  --}}
-<h2>Add a Genre</h2>
-<p>To add a new genre, please enter their information below and click 'Submit'!</p>
-<form id="add-genre-ajax">
-
-    <label for="input-genre_name">Genre Name: </label>
-    <input type="text" name="input-genre_name" id="input-genre_name">
-   
-    
-    <label for="input-genre_description">Genre Description: </label>
-    <input type="text" name="input-genre_description" id="input-genre_description">
-
-
-    <input type="submit">
-</form>
-
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_genre.js"></script>
-
 

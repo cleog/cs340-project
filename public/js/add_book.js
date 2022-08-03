@@ -22,6 +22,7 @@ addBookForm.addEventListener("submit", function (e) {
     let inputPatronID = document.getElementById("input-patron_id");
     let inputDueDate = document.getElementById("input-due_date");
 
+    
     // Get the values from the form fields
     let titleNameValue = inputTitleName.value;
     let genreIDValue = inputGenreID.value;
@@ -29,13 +30,47 @@ addBookForm.addEventListener("submit", function (e) {
     let patronIDValue = inputPatronID.value;
     let dueDateValue = inputDueDate.value;
 
+    // data validation
+
+    if ((!titleNameValue) && (isNaN(genreIDValue) && (isNaN(publisherIDValue))))
+    {
+        alert("Title Name, Genre ID, and PublisherID not entered")
+        return;
+    } 
+    
+    if (!titleNameValue) 
+    {
+        alert("Title Name not entered");
+        return;
+    }
+
+    if (isNaN(genreIDValue) && (isNaN(publisherIDValue)))
+    {
+        alert("Genre ID and Publisher ID not entered")
+        return;
+    }
+
+    if (isNaN(genreIDValue)) 
+    {
+        alert("Genre ID not entered")
+        return;
+    }
+
+    if (isNaN(publisherIDValue)) 
+    {
+        alert("Publisher ID not entered")
+        return;
+    }
+    
+
+
     // Put our data we want to send in a javascript object
     let data = {
         title_name: titleNameValue,
         genre_id: genreIDValue,
         publisher_id: publisherIDValue,
         patron_id: patronIDValue,
-        due_date: dueDateValue
+        due_date: dueDateValue.substring(0, 10) // changed
     }
     
     // Setup our AJAX request
@@ -92,7 +127,6 @@ addRowToTable = (data) => {
     let dueDateCell = document.createElement("TD");
 
     let deleteCell = document.createElement("TD");
-    // let returnCell = document.createElement("TD");
 
 
     // Fill the cells with correct data
@@ -101,7 +135,7 @@ addRowToTable = (data) => {
     genreIDCell.innerText = newRow.genre_id;
     publisherIDCell.innerText = newRow.publisher_id;
     patronIDCell.innerText = newRow.patron_id;
-    dueDateCell.innerText = newRow.due_date;
+    dueDateCell.innerText = newRow.due_date.substring(0, 10);
 
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
@@ -109,11 +143,6 @@ addRowToTable = (data) => {
         deleteBook(newRow.book_id);
     };
 
-    // returnCell = document.createElement("button");
-    // returnCell.innerHTML = "Return";
-    // returnCell.onclick = function(){
-    //     returnBook(newRow.book_id);
-    // };
 
     // Add the cells to the row 
     row.appendChild(bookIDCell);
@@ -123,8 +152,6 @@ addRowToTable = (data) => {
     row.appendChild(patronIDCell);
     row.appendChild(dueDateCell);
     row.appendChild(deleteCell);
-    // if (newRow.patron_id)
-    //     row.appendChild(returnCell);
 
     // Add a row attribute so the deleteRow function can find a newly added row
     row.setAttribute('data-value', newRow.book_id);
@@ -138,8 +165,7 @@ addRowToTable = (data) => {
     // // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
     let selectMenu = document.getElementById("input-book_id-update");
     let option = document.createElement("option");
-    option.text = newRow.patron_id;
-    option.value = newRow.due_date;
+    option.text = newRow.book_id; 
+    option.value = newRow.book_id; 
     selectMenu.add(option);
-    // // End of new step 8 code.
 }

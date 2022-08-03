@@ -6,40 +6,19 @@
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
         Date Accessed: 7/25/2022 --}}
 
+<link rel="stylesheet" href="./css/home.css">
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<a href="/">Home</a>
-<h1>Books and Authors</h1>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/books">Books</a></li>
+<li><a href="/genres">Genres</a></li>
+<li><a href="/patrons">Patrons</a></li>
+<li><a href="/publishers">Publishers</a></li>
+<li><a href="/authors">Authors</a></li>
+</ul>
+<h1>Books and their Authors</h1>
 
-{{!-- Create a table --}}
-<table id="books-authors-table">
-
-    {{!-- Header section --}}
-    <thead>
-
-        {{!-- Table row section --}}
-        <tr>
-            <th>Book-Author ID</th>
-            <th>Book ID</th>
-            <th>Author ID</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-
-    {{!-- Body section --}}
-    <tbody>
-
-        {{!-- For each row, print the book_author_id, book_id, and author_id, in order --}}
-        {{#each data}}
-        <tr data-value={{this.book_author_id}}>
-            <td>{{this.book_author_id}}</td>
-            <td>{{this.book_id}}</td>
-            <td>{{this.author_id}}</td>
-            <td><button onclick="deleteBooksAuthors({{this.book_author_id}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_books_authors.js"></script>
 
 {{!-- Form to add a record to the table using AJAX --}}
 <h2>Associate an Author with a Book</h2>
@@ -91,3 +70,35 @@
 </form>
 
 <script src="./js/update_books_authors.js"></script>
+
+{{!-- Create a table --}}
+<table id="books-authors-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- Table row section --}}
+        <tr>
+            <th>Book-Author ID</th>
+            <th>Book ID</th>
+            <th>Author ID</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the book_author_id, book_id, and author_id, in order --}}
+        {{#each data}}
+        <tr data-value={{this.book_author_id}}>
+            <td>{{this.book_author_id}}</td>
+            <td>{{this.book_id}}</td>
+            <td>{{this.author_id}}</td>
+            <td><button onclick="deleteBooksAuthors({{this.book_author_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_books_authors.js"></script>
+

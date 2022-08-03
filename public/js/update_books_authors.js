@@ -23,11 +23,11 @@ updateBooksAuthorsForm.addEventListener("submit", function (e) {
     let bookAuthorIDValue = inputBookAuthorID.value;
     let authorIDValue = inputAuthorID.value;
     
-    // currently the database table for bsg_people does not allow updating values to NULL
-    // so we must abort if being passed NULL for homeworld
+    // Data Validation
 
     if (isNaN(authorIDValue)) 
     {
+        alert("Author ID not selected")
         return;
     }
 

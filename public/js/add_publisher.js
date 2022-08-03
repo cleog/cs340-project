@@ -15,6 +15,27 @@ addPublisherForm.addEventListener("submit", function (e) {
     let publisherNameValue = inputPublisherName.value;
     let publisherCountryValue = inputPublisherCountry.value;
 
+    // Data Validation
+
+    if (!publisherCountryValue && !publisherNameValue)
+    {
+        alert("Publisher Name and Country not entered")
+        return;
+    }
+    
+    if (!publisherNameValue) 
+    {
+        alert("Publisher Name not entered")
+        return;
+    }
+
+    if (!publisherCountryValue) 
+    {
+        alert("Publisher Country not entered")
+        return;
+    }
+
+
     // Put our data we want to send in a javascript object
     // having this as data may cause an issue?
     let data = {
