@@ -70,7 +70,7 @@ addBookForm.addEventListener("submit", function (e) {
         genre_id: genreIDValue,
         publisher_id: publisherIDValue,
         patron_id: patronIDValue,
-        due_date: dueDateValue.substring(0, 10) // changed
+        due_date: dueDateValue
     }
     
     // Setup our AJAX request
@@ -135,7 +135,7 @@ addRowToTable = (data) => {
     genreIDCell.innerText = newRow.genre_id;
     publisherIDCell.innerText = newRow.publisher_id;
     patronIDCell.innerText = newRow.patron_id;
-    dueDateCell.innerText = newRow.due_date.substring(0, 10);
+    dueDateCell.innerText = newRow.due_date;
 
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
