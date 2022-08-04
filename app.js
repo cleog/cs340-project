@@ -63,8 +63,8 @@ app.post('/add-book-ajax', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on Books
-            query2 = `SELECT * FROM Books;`;
+            // If there was no error, insert new Book ID and associated Author ID into Books_Authors intersection table.
+            query2 = `INSERT INTO Books_Authors (book_id, author_id) VALUES ((SELECT MAX(book_id) FROM Books), '${data.author_id}');`;
             db.pool.query(query2, function (error, rows, fields) {
 
                 // If there was an error on the second query, send a 400
@@ -74,9 +74,23 @@ app.post('/add-book-ajax', function (req, res) {
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
                 else {
-                    res.send(rows);
+                    // If there was no error, perform a SELECT * on Books
+                    query3 = `SELECT * FROM Books;`;
+                    db.pool.query(query3, function (error, rows, fields) {
+
+                        // If there was an error on the third query, send a 400
+                        if (error) {
+
+                            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                            console.log(error);
+                            res.sendStatus(400);
+                        }
+                        // If all went well, send the results of the query back.
+                        else {
+                            res.send(rows);
+                        }
+                    })
                 }
             })
         }

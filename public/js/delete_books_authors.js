@@ -42,6 +42,7 @@ function deleteRow(book_author_id){
        //rows would be accessed using the "row" variable assigned in the for loop
        if (table.rows[i].getAttribute("data-value") == book_author_id) {
             table.deleteRow(i);
+            deleteDropDownMenu(book_author_id);
             break;
        }
     }
@@ -50,10 +51,10 @@ function deleteRow(book_author_id){
 function deleteDropDownMenu(book_author_id){
     let selectMenu = document.getElementById("input-book-author-id-update");
     for (let i = 0; i < selectMenu.length; i++){
-      if (Number(selectMenu.options[i].value) === Number(book_author_id)){
-        selectMenu[i].remove();
-        break;
-      } 
+        if (Number(selectMenu.options[i].value) === Number(book_author_id)){
+            selectMenu[i].remove();
+            break;
+        } 
   
     }
 }

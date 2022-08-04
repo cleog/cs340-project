@@ -15,7 +15,7 @@ h3 {
 }
 
 body {
-    background-color: rgb(75, 127, 75);
+    background-color: rgb(142, 172, 142);
 }
 
 ul {
@@ -50,9 +50,21 @@ p {
 table {
     margin-left: auto;
     margin-right: auto;
-    padding-top: 50px;
+    border: black solid 1pt;
 }
 
-td {
-    word-wrap: break-word;
+tr th {
+    border: black solid 1pt;
+    padding: 5pt;
+    padding-left: 8pt;
+    padding-right: 8pt;
+}
+
+tr td {
+    border: black solid 1pt;
+    padding: 5pt;
+    padding-left: 8pt;
+    padding-right: 8pt;
+    overflow-wrap: break-word;
+    text-align: center;
 }

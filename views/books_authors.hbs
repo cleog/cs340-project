@@ -6,9 +6,10 @@
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
         Date Accessed: 7/25/2022 --}}
 
-<link rel="stylesheet" href="./css/home.css">
+<link rel="stylesheet" href="./css/page.css">
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <ul>
 <li><a href="/">Home</a></li>
 <li><a href="/books">Books</a></li>
@@ -16,57 +17,65 @@
 <li><a href="/patrons">Patrons</a></li>
 <li><a href="/publishers">Publishers</a></li>
 <li><a href="/authors">Authors</a></li>
+<li><a href="/books_authors">Books and their Authors</a></li>
 </ul>
-<h1>Books and their Authors</h1>
 
+<h1>Books and their Authors</h2>
+
+<p class="page_instructions">Use this page to view a book's authors, assign a new author to a book, disassociate an author with a book,
+    and change/update an author currently associated with a book.</p>
+<p>---</p>
 
 {{!-- Form to add a record to the table using AJAX --}}
-<h2>Associate an Author with a Book</h2>
-<p>To associate an author with a book, please select a Book ID and Author ID from the below drop-downs and click 'Submit'!</p>
 <form id="add-books-authors-form-ajax">
-    <label for="input-book-id">Book ID: </label>
-    <select name="input-book-id" id="input-book-id">
-        <option value="">Select a Book ID</option>
-        {{#each books}}
-        <option value="{{this.book_id}}">{{this.book_id}}: {{this.title_name}}</option>
-        {{/each}}
-    </select>
-    
-    <label for="input-author-id">Author ID: </label>
-    <select name="input-author-id" id="input-author-id">
-        <option value="">Select an Author ID</option>
-        {{#each authors}}
-        <option value="{{this.author_id}}">{{this.author_id}}: {{this.author_first_name}} {{this.author_last_name}}</option>
-        {{/each}}
-    </select>
+    <fieldset>
+        <legend><b>Associate an Author with a Book</b></legend>
+        <p>To associate an author with a book, please select a Book ID and Author ID from the below drop-downs and click 'Submit'!</p>
+        <label for="input-book-id">Book ID: </label>
+        <select name="input-book-id" id="input-book-id">
+            <option value="">Select a Book ID</option>
+            {{#each books}}
+            <option value="{{this.book_id}}">{{this.book_id}}: {{this.title_name}}</option>
+            {{/each}}
+        </select>
+        
+        <label for="input-author-id">Author ID: </label>
+        <select name="input-author-id" id="input-author-id">
+            <option value="">Select an Author ID</option>
+            {{#each authors}}
+            <option value="{{this.author_id}}">{{this.author_id}}: {{this.author_first_name}} {{this.author_last_name}}</option>
+            {{/each}}
+        </select>
 
-    <input type="submit">
+        <input type="submit">
+    </fieldset>
 </form>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_books_authors.js"></script>
 
-<h2>Update an Existing Author Associated with a Book</h2>
-<p>To update the author that is currently associated with a book, select the Book-Author ID you'd like to modify from the drop-down menu on the left and the new Author ID from the drop down menu on the right.</p>
 <form id="update-books-authors-form-ajax">
+    <fieldset>
+        <legend><b>Update an Existing Author Associated with a Book</b></legend>
+        <p>To update the author that is currently associated with a book, select the Book-Author ID you'd like to modify from the drop-down<br>
+        menu on the left and the new Author ID from the drop down menu on the right.</p>
+        <label for="input-book-author-id">Book-Author ID: </label>
+        <select name="input-book-author-id" id="input-book-author-id-update">
+            <option value="">Select a Book-Author ID</option>
+            {{#each data}}
+            <option value="{{this.book_author_id}}">{{this.book_author_id}}</option>
+            {{/each}}
+        </select>
 
-    <label for="input-book-author-id">Book-Author ID: </label>
-    <select name="input-book-author-id" id="input-book-author-id-update">
-        <option value="">Select a Book-Author ID</option>
-        {{#each data}}
-        <option value="{{this.book_author_id}}">{{this.book_author_id}}</option>
-        {{/each}}
-    </select>
-
-    <label for="input-author-id">Author ID: </label>
-    <select name="input-author-id" id="input-author-id-update">
-        <option>Select an Author ID</option>
-        {{#each authors}}
-        <option value="{{this.author_id}}">{{this.author_id}}: {{this.author_first_name}} {{this.author_last_name}}</option>
-        {{/each}}
-    </select>
-    <input type="submit">
-
+        <label for="input-author-id">Author ID: </label>
+        <select name="input-author-id" id="input-author-id-update">
+            <option>Select an Author ID</option>
+            {{#each authors}}
+            <option value="{{this.author_id}}">{{this.author_id}}: {{this.author_first_name}} {{this.author_last_name}}</option>
+            {{/each}}
+        </select>
+        <input type="submit">
+    </fieldset>
 </form>
 
 <script src="./js/update_books_authors.js"></script>

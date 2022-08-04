@@ -17,6 +17,7 @@ addBookForm.addEventListener("submit", function (e) {
 
     // Get form fields we need to get data from
     let inputTitleName = document.getElementById("input-title_name");
+    let inputAuthorID = document.getElementById("input-author_id");
     let inputGenreID = document.getElementById("input-genre_id");
     let inputPublisherID = document.getElementById("input-publisher_id");
     let inputPatronID = document.getElementById("input-patron_id");
@@ -25,6 +26,7 @@ addBookForm.addEventListener("submit", function (e) {
     
     // Get the values from the form fields
     let titleNameValue = inputTitleName.value;
+    let authorIDValue = inputAuthorID.value;
     let genreIDValue = inputGenreID.value;
     let publisherIDValue = inputPublisherID.value;
     let patronIDValue = inputPatronID.value;
@@ -32,12 +34,13 @@ addBookForm.addEventListener("submit", function (e) {
 
     // data validation
 
-    if ((!titleNameValue) && (isNaN(genreIDValue) && (isNaN(publisherIDValue))))
+    if ((!titleNameValue) || isNaN(authorIDValue)|| isNaN(genreIDValue) || isNaN(publisherIDValue))
     {
-        alert("Title Name, Genre ID, and PublisherID not entered")
+        alert("Title Name, Author, Genre, and Publisher are required fields.")
         return;
     } 
     
+    /*
     if (!titleNameValue) 
     {
         alert("Title Name not entered");
@@ -61,12 +64,13 @@ addBookForm.addEventListener("submit", function (e) {
         alert("Publisher ID not entered")
         return;
     }
-    
+    */
 
 
     // Put our data we want to send in a javascript object
     let data = {
         title_name: titleNameValue,
+        author_id: authorIDValue,
         genre_id: genreIDValue,
         publisher_id: publisherIDValue,
         patron_id: patronIDValue,
@@ -87,6 +91,7 @@ addBookForm.addEventListener("submit", function (e) {
 
             // Clear the input fields for another transaction
             inputTitleName.value = '';
+            inputAuthorID.value = '',
             inputGenreID.value = '';
             inputPublisherID.value = '';
             inputPatronID.value = '';
