@@ -61,7 +61,7 @@
 
         <label for="input-patron_id">Patron ID: </label>
         <select name="input-patron_id" id="input-patron_id">
-            <option value="">Select a Patron</option>
+            <option value="">Select a Patron ID</option>
             <option value=NULL>(None)</option>
             {{#each patrons}}
             <option value="{{this.patron_id}}">{{this.patron_id}}: {{this.patron_first_name}} {{this.patron_last_name}}</option>
@@ -107,7 +107,7 @@
 
         <label for="input-patron_id-update">Patron ID: </label>
         <select name="input-patron_id" id="input-patron_id-update">
-            <option>Select a Patron</option>
+            <option>Select a Patron ID</option>
             <option value=NULL>(None)</option>
             {{#each patrons}}
             <option value="{{this.patron_id}}">{{this.patron_id}}: {{this.patron_first_name}} {{this.patron_last_name}}</option>
