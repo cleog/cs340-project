@@ -34,38 +34,11 @@ addBookForm.addEventListener("submit", function (e) {
 
     // data validation
 
-    if ((!titleNameValue) || isNaN(authorIDValue)|| isNaN(genreIDValue) || isNaN(publisherIDValue))
+    if ((!titleNameValue) || (authorIDValue === '') || (genreIDValue === '') || (publisherIDValue == ''))
     {
         alert("Title Name, Author, Genre, and Publisher are required fields.")
         return;
     } 
-    
-    /*
-    if (!titleNameValue) 
-    {
-        alert("Title Name not entered");
-        return;
-    }
-
-    if (isNaN(genreIDValue) && (isNaN(publisherIDValue)))
-    {
-        alert("Genre ID and Publisher ID not entered")
-        return;
-    }
-
-    if (isNaN(genreIDValue)) 
-    {
-        alert("Genre ID not entered")
-        return;
-    }
-
-    if (isNaN(publisherIDValue)) 
-    {
-        alert("Publisher ID not entered")
-        return;
-    }
-    */
-
 
     // Put our data we want to send in a javascript object
     let data = {
