@@ -23,20 +23,23 @@
 
 <h1>Genres</h1>
 
+<p class="page_instructions">Use this page to view genres, add a new genre, and delete a genre.</p>
+<p>---</p>
+
 {{!-- Form to add a record to the table  --}}
-<h2>Add a Genre</h2>
-<p>To add a new genre, please enter their information below and click 'Submit'!</p>
 <form id="add-genre-ajax">
-
-    <label for="input-genre_name">Genre Name: </label>
-    <input type="text" name="input-genre_name" id="input-genre_name">
-   
+    <fieldset>
+        <legend><b>Add a Genre</b></legend>
+        <p>To add a new genre, please enter their information below and click 'Submit'!</p>
     
-    <label for="input-genre_description">Genre Description: </label>
-    <input type="text" name="input-genre_description" id="input-genre_description">
+        <label for="input-genre_name">Genre Name: </label>
+        <input type="text" name="input-genre_name" id="input-genre_name">
+    
+        <label for="input-genre_description">Genre Description: </label>
+        <input type="text" name="input-genre_description" id="input-genre_description">
 
-
-    <input type="submit">
+        <input type="submit">
+    </fieldset>
 </form>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}

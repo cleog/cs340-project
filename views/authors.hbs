@@ -21,20 +21,24 @@
 
 <h1>Authors</h1>
 
+<p class="page_instructions">Use this page to view, add, and delete authors.</p>
+<p>---</p>
+
 {{!-- Form to add a record to the table  --}}
-<h2>Add an Author</h2>
-<p>To add a new author, please enter their information below and click 'Submit'!</p>
 <form id="add-author-ajax">
-
-    <label for="input-author_first_name">Author First Name: </label>
-    <input type="text" name="input-author_first_name" id="input-author_first_name">
-   
+    <fieldset>
+        <legend><b>Add an Author</b></legend>
+        <p>To add a new author, please enter their information below and click 'Submit'!</p>
+        
+        <label for="input-author_first_name">Author First Name: </label>
+        <input type="text" name="input-author_first_name" id="input-author_first_name">
     
-    <label for="input-author_last_name">Author Last Name: </label>
-    <input type="text" name="input-author_last_name" id="input-author_last_name">
+        
+        <label for="input-author_last_name">Author Last Name: </label>
+        <input type="text" name="input-author_last_name" id="input-author_last_name">
 
-
-    <input type="submit">
+        <input type="submit">
+    </fieldset>
 </form>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}

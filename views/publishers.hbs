@@ -22,20 +22,25 @@
 
 <h1>Publishers</h1>
 
+<p class="page_instructions">Use this page to view publishers, add a new publisher, and delete a publisher.</p>
+<p>---</p>
+
 {{!-- Form to add a record to the table  --}}
-<h2>Add a Publisher</h2>
-<p>To add a new publisher, please enter their information below and click 'Submit'!</p>
 <form id="add-publisher-ajax">
+    <fieldset>
+        <legend><b>Add a Publisher</b></legend>
+        <p>To add a new publisher, please enter their information below and click 'Submit'!</p>
 
-    <label for="input-publsiher_name">Publisher Name: </label>
-    <input type="text" name="input-publsiher_name" id="input-publisher_name">
-   
+        <label for="input-publsiher_name">Publisher Name: </label>
+        <input type="text" name="input-publsiher_name" id="input-publisher_name">
     
-    <label for="input-publisher_country">Publisher Country: </label>
-    <input type="text" name="input-publisher_country" id="input-publisher_country">
+        
+        <label for="input-publisher_country">Publisher Country: </label>
+        <input type="text" name="input-publisher_country" id="input-publisher_country">
 
 
-    <input type="submit">
+        <input type="submit">
+    </fieldset>
 </form>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}

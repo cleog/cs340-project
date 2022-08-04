@@ -22,97 +22,103 @@
 
 <h1>Books</h1>
 
+<p class="page_instructions">Use this page to view all books in the library, add a new book, delete a book, search for a book, and update the lending status of a book.</p>
+<p>---</p>
 
 {{!-- Form to add a record to the table  --}}
-<h2>Add a Book</h2>
-<p>To add a new book, please enter their information below and click 'Submit'! If a book has multiple authors, please navigate to the 'Books and their Authors' page to add additional authors.
-    If the book is not checked out, select None for Patron and leave Due Date blank.</p>
 <form id="add-book-ajax">
+    <fieldset>
+        <legend><b>Add a Book</b></legend>
+        <p>To add a new book, please enter their information below and click 'Submit'! If a book has multiple authors, please navigate to the 'Books and their Authors' page to add additional authors.
+        If the book is not checked out, select None for Patron and leave Due Date blank.</p>
 
-    <label for="input-title_name">Title Name: </label>
-    <input type="text" name="input-title_name" id="input-title_name">
-   
-    <label for="input-author_id">Author: </label>
-    <select name="input-author_id" id="input-author_id">
-        <option value="test">Select an Author</option>
-        {{#each authors}}
-        <option value="{{this.author_id}}">{{this.author_first_name}} {{this.author_last_name}}</option>
-        {{/each}}
-    </select>
+        <label for="input-title_name">Title Name: </label>
+        <input type="text" name="input-title_name" id="input-title_name">
+    
+        <label for="input-author_id">Author: </label>
+        <select name="input-author_id" id="input-author_id">
+            <option value="test">Select an Author</option>
+            {{#each authors}}
+            <option value="{{this.author_id}}">{{this.author_first_name}} {{this.author_last_name}}</option>
+            {{/each}}
+        </select>
 
-    <label for="input-genre_id">Genre Name: </label>
-    <select name="input-genre_id" id="input-genre_id">
-        <option value="test">Select a Genre</option>
-        {{#each genres}}
-        <option value="{{this.genre_id}}">{{this.genre_name}}</option>
-        {{/each}}
-    </select>
-   
-    <label for="input-publisher_id">Publisher ID: </label>
-    <select name="input-publisher_id" id="input-publisher_id">
-        <option value="test">Select a Publisher</option>
-        {{#each publishers}}
-        <option value="{{this.publisher_id}}">{{this.publisher_name}}</option>
-        {{/each}}
-    </select>
+        <label for="input-genre_id">Genre Name: </label>
+        <select name="input-genre_id" id="input-genre_id">
+            <option value="test">Select a Genre</option>
+            {{#each genres}}
+            <option value="{{this.genre_id}}">{{this.genre_name}}</option>
+            {{/each}}
+        </select>
+    
+        <label for="input-publisher_id">Publisher ID: </label>
+        <select name="input-publisher_id" id="input-publisher_id">
+            <option value="test">Select a Publisher</option>
+            {{#each publishers}}
+            <option value="{{this.publisher_id}}">{{this.publisher_name}}</option>
+            {{/each}}
+        </select>
 
-    <label for="input-patron_id">Patron ID: </label>
-    <select name="input-patron_id" id="input-patron_id">
-        <option value="test">Select a Patron</option>
-        <option value=NULL>(None)</option>
-        {{#each patrons}}
-        <option value="{{this.patron_id}}">{{this.patron_last_name}}, {{this.patron_first_name}}</option>
-        {{/each}}
-    </select>
+        <label for="input-patron_id">Patron ID: </label>
+        <select name="input-patron_id" id="input-patron_id">
+            <option value="test">Select a Patron</option>
+            <option value=NULL>(None)</option>
+            {{#each patrons}}
+            <option value="{{this.patron_id}}">{{this.patron_last_name}}, {{this.patron_first_name}}</option>
+            {{/each}}
+        </select>
 
-    <label for="input-due_date">Due Date: </label>
-    <input type="date" name="input-due_date" id="input-due_date" min="2022-08-08">
+        <label for="input-due_date">Due Date: </label>
+        <input type="date" name="input-due_date" id="input-due_date" min="2022-08-08">
 
-    <input type="submit">
+        <input type="submit">
+    </fieldset>
 </form>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_book.js"></script>
 
-
-<h2>Search for a Book</h2>
-<p>Search by title name using the field below. Partial title names are OK too!</p>
 <form id="search-book-html" method='GET' action='/books'>
-    <label for="input-title_name">Search by Title Name: </label>
-    <input type="text" name="title_name" id="input-title_name-html-search">
-    <input type="submit">
-    <a href='/'><button>Reset</button></a>
+    <fieldset>
+        <legend><b>Search for a Book</b></legend>
+        <p>Search by title name using the field below. Partial title names are OK too!</p>
+
+        <label for="input-title_name">Search by Title Name: </label>
+        <input type="text" name="title_name" id="input-title_name-html-search">
+        <input type="submit">
+
+        <a href='/'><button>Reset</button></a>
+    </fieldset>
 </form>
 
-<h2>Updating A Book Form</h2>
-<p>To update a specific book select their Book ID from the drop-down menu on the left and their Patron Name from the drop down menu in the middle and the Due Date on the right.</p>
-<p>To check out a book, add the Patron and Due Date. To return a book, select Patron as None and leave Due Date blank.</p>
 <form id="update-book-form-ajax">
+    <fieldset>
+        <legend><b>Updating A Book Form</b></legend>
+        <p>To update a specific book select their Book ID from the drop-down menu on the left and their Patron Name from the drop down menu in the middle and the Due Date on the right.
+        To check out a book, add the Patron and Due Date. To return a book, select Patron as None and leave Due Date blank.</p>
 
-    <label for="input-book_id-update">Book ID: </label>
-    <select name="input-book_id" id="input-book_id-update">
-        <option>Select a Book ID</option>
-        {{#each books}}
-        <option value="{{this.book_id}}">{{this.book_id}}</option>
-        {{/each}}
-    </select>
-    {{!-- <input type="text" name="input-book_id" id="input-book_id-update"> --}}
+        <label for="input-book_id-update">Book ID: </label>
+        <select name="input-book_id" id="input-book_id-update">
+            <option>Select a Book ID</option>
+            {{#each books}}
+            <option value="{{this.book_id}}">{{this.book_id}}</option>
+            {{/each}}
+        </select>
 
+        <label for="input-patron_id-update">Patron: </label>
+        <select name="input-patron_id" id="input-patron_id-update">
+            <option>Select a Patron</option>
+            <option value=NULL>(None)</option>
+            {{#each patrons}}
+            <option value="{{this.patron_id}}">{{this.patron_last_name}}, {{this.patron_first_name}}</option>
+            {{/each}}
+        </select>
 
-    <label for="input-patron_id-update">Patron: </label>
-    <select name="input-patron_id" id="input-patron_id-update">
-        <option>Select a Patron</option>
-        <option value=NULL>(None)</option>
-        {{#each patrons}}
-        <option value="{{this.patron_id}}">{{this.patron_last_name}}, {{this.patron_first_name}}</option>
-        {{/each}}
-    </select>
+        <label for="input-due_date-update">Due Date: </label>
+        <input type="date" name="input-due_date" id="input-due_date-update" min="2022-08-08">
 
-    <label for="input-due_date-update">Due Date: </label>
-    <input type="date" name="input-due_date" id="input-due_date-update" min="2022-08-08">
-
-    <input type="submit">
-
+        <input type="submit">
+    </fieldset>
 </form>
 
 <script src="./js/update_book.js"></script>

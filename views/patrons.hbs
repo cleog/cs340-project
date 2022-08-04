@@ -22,24 +22,28 @@
 
 <h1>Patrons</h1>
 
+<p class="page_instructions">Use this page to view all library patrons, add a new patron, and delete a patron.</p>
+<p>---</p>
 
 {{!-- Form to add a record to the table  --}}
-<h2>Add a Patron</h2>
-<p>To add a new patron, please enter their information below and click 'Submit'!.</p>
 <form id="add-patron-ajax">
+    <fieldset>
+        <legend><b>Add a Patron</b></legend>
+        <p>To add a new patron, please enter their information below and click 'Submit'!.</p>
 
-    <label for="input-patron_first_name">Patron First Name: </label>
-    <input type="text" name="input-patron_first_name" id="input-patron_first_name">
-   
+        <label for="input-patron_first_name">Patron First Name: </label>
+        <input type="text" name="input-patron_first_name" id="input-patron_first_name">
     
-    <label for="input-patron_last_name">Patron Last Name: </label>
-    <input type="text" name="input-patron_last_name" id="input-patron_last_name">
+        
+        <label for="input-patron_last_name">Patron Last Name: </label>
+        <input type="text" name="input-patron_last_name" id="input-patron_last_name">
 
-    <label for="input-patron_phone_number">Patron Phone Number: </label>
-    <input type="text" name="input-patron_phone_number" id="input-patron_phone_number">
+        <label for="input-patron_phone_number">Patron Phone Number: </label>
+        <input type="text" name="input-patron_phone_number" id="input-patron_phone_number">
 
 
-    <input type="submit">
+        <input type="submit">
+    </fieldset>
 </form>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
