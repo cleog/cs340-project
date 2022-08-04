@@ -1,5 +1,19 @@
-/* https://stackoverflow.com/questions/19443013/how-to-center-an-unordered-list
-https://stackoverflow.com/questions/65428078/css-html-align-form-center-but-having-labels-and-legend-aligned-in-the-left */
+/*
+Citation for the code in this file:
+    Code is copied from and references information found in:
+    Source Title: How to center an unordered list?
+    Author(s): Rafael Herscovici
+    Source Type: code snippet
+    Source URL: https://stackoverflow.com/questions/19443013/how-to-center-an-unordered-list
+    Date Accessed: 8/4/2022
+
+    Code is copied from and references information found in:
+    Source Title: CSS: HTML align form center, but having Labels and Legend aligned in the Left
+    Author(s): Ionut
+    Source Type: code snippet
+    Source URL: https://stackoverflow.com/questions/65428078/css-html-align-form-center-but-having-labels-and-legend-aligned-in-the-left
+    Date Accessed: 8/4/2022
+*/
 
 
 h1 {
@@ -51,6 +65,7 @@ form {
     display: inline-block;
     text-align: center;
     margin-bottom: 15pt;
+    width: 70%;
 }
 
 table {
