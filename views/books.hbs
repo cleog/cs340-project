@@ -37,7 +37,7 @@
     
         <label for="input-author_id">Author: </label>
         <select name="input-author_id" id="input-author_id">
-            <option value="test">Select an Author</option>
+            <option value="">Select an Author</option>
             {{#each authors}}
             <option value="{{this.author_id}}">{{this.author_first_name}} {{this.author_last_name}}</option>
             {{/each}}
@@ -45,7 +45,7 @@
 
         <label for="input-genre_id">Genre: </label>
         <select name="input-genre_id" id="input-genre_id">
-            <option value="test">Select a Genre</option>
+            <option value="">Select a Genre</option>
             {{#each genres}}
             <option value="{{this.genre_id}}">{{this.genre_name}}</option>
             {{/each}}
@@ -53,7 +53,7 @@
     
         <label for="input-publisher_id">Publisher: </label>
         <select name="input-publisher_id" id="input-publisher_id">
-            <option value="test">Select a Publisher</option>
+            <option value="">Select a Publisher</option>
             {{#each publishers}}
             <option value="{{this.publisher_id}}">{{this.publisher_name}}</option>
             {{/each}}
@@ -61,7 +61,7 @@
 
         <label for="input-patron_id">Patron ID: </label>
         <select name="input-patron_id" id="input-patron_id">
-            <option value="test">Select a Patron</option>
+            <option value="">Select a Patron</option>
             <option value=NULL>(None)</option>
             {{#each patrons}}
             <option value="{{this.patron_id}}">{{this.patron_id}}: {{this.patron_first_name}} {{this.patron_last_name}}</option>
