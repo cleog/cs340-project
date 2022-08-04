@@ -20,10 +20,8 @@ body {
 
 ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: rgb(232, 220, 90);
+    display: table; 
+    margin: 0 auto;
 }
 
 li {
@@ -31,11 +29,21 @@ li {
 }
   
 li a {
-    display: block;
+    display: inline-block;
     color: black;
     text-align: center;
-    padding: 20px 85px;
     text-decoration: none;
+
+    padding: 15pt;
+    padding-bottom: 8pt;
+    padding-top: 8pt;
+    margin: 1pt;
+
+    border-width: 3pt;
+    border-style: double;
+    border-color: black;
+
+    background-color: aliceblue;
 }
 
 form {
