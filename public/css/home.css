@@ -1,3 +1,13 @@
+/*
+Citation for the code in this file:
+    Code is copied from and references information found in:
+    Source Title: How to center an unordered list?
+    Author(s): Rafael Herscovici
+    Source Type: code snippet
+    Source URL: https://stackoverflow.com/questions/19443013/how-to-center-an-unordered-list
+    Date Accessed: 8/4/2022
+*/
+
 h1 {
     margin-top: 30px;
     text-align: center;
