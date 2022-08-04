@@ -60,6 +60,7 @@
         <legend><b>Update an Existing Author Associated with a Book</b></legend>
         <p>To update the author that is currently associated with a book, select the Book-Author ID you'd like to modify from the drop-down
         menu on the left and the new Author ID from the drop down menu on the right.</p>
+
         <label for="input-book-author-id">Book-Author ID: </label>
         <select name="input-book-author-id" id="input-book-author-id-update">
             <option value="">Select a Book-Author ID</option>
@@ -70,7 +71,7 @@
 
         <label for="input-author-id">Author ID: </label>
         <select name="input-author-id" id="input-author-id-update">
-            <option>Select an Author ID</option>
+            <option value="">Select an Author ID</option>
             {{#each authors}}
             <option value="{{this.author_id}}">{{this.author_id}}: {{this.author_first_name}} {{this.author_last_name}}</option>
             {{/each}}
