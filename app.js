@@ -5,6 +5,13 @@
 //     Source Type: source code and information guide
 //     Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 //     Date Accessed: 7/25/2022
+//
+//     Code involving use of .split and .join together on a string to replace one single quote with two single quotes is based on:
+//     Source Title: How can I iterate over the characters in a string, and change them?
+//     Author(s): kevinSpaceyIsKeyserSöze
+//     Source Type: code snippet
+//     Source URL: https://stackoverflow.com/questions/44067329/how-can-i-iterate-over-the-characters-in-a-string-and-change-them
+//     Date Accessed: 8/4/2022
 
 // App.js
 
@@ -48,11 +55,15 @@ app.post('/add-book-ajax', function (req, res) {
         patron_id = 'NULL'
         due_date = 'NULL'
     }
+    
+    let title_name = data.title_name
+
+    title_name = title_name.split("'").join("''")
 
 
     // Create the query and run it on the database
 
-    query1 = `INSERT INTO Books (title_name, genre_id, publisher_id, patron_id, due_date) VALUES ('${data.title_name}', '${data.genre_id}', '${data.publisher_id}', ${patron_id}, ${due_date})`;
+    query1 = `INSERT INTO Books (title_name, genre_id, publisher_id, patron_id, due_date) VALUES ('${title_name}', '${data.genre_id}', '${data.publisher_id}', ${patron_id}, ${due_date})`;
     db.pool.query(query1, function (error, rows, fields) {
 
         // Check to see if there was an error
@@ -101,10 +112,17 @@ app.post('/add-genre-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
+    let genre_name = data.genre_name
+
+    genre_name = genre_name.split("'").join("''")
+
+    let genre_description = data.genre_description
+
+    genre_description = genre_description.split("'").join("''")
 
     // Create the query and run it on the database
 
-    query1 = `INSERT INTO Genres (genre_name, genre_description) VALUES ('${data.genre_name}', '${data.genre_description}')`;
+    query1 = `INSERT INTO Genres (genre_name, genre_description) VALUES ('${genre_name}', '${genre_description}')`;
     db.pool.query(query1, function (error, rows, fields) {
 
         // Check to see if there was an error
@@ -139,10 +157,17 @@ app.post('/add-author-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
+    let author_first_name = data.author_first_name
+
+    author_first_name = author_first_name.split("'").join("''")
+
+    let author_last_name = data.author_last_name
+
+    author_last_name = author_last_name.split("'").join("''")
 
     // Create the query and run it on the database
 
-    query1 = `INSERT INTO Authors (author_first_name, author_last_name) VALUES ('${data.author_first_name}', '${data.author_last_name}')`;
+    query1 = `INSERT INTO Authors (author_first_name, author_last_name) VALUES ('${author_first_name}', '${author_last_name}')`;
     db.pool.query(query1, function (error, rows, fields) {
 
         // Check to see if there was an error
@@ -177,9 +202,17 @@ app.post('/add-patron-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
+    let patron_first_name = data.patron_first_name
+
+    patron_first_name = patron_first_name.split("'").join("''")
+
+    let patron_last_name = data.patron_last_name
+
+    patron_last_name = patron_last_name.split("'").join("''")
+
     // Create the query and run it on the database
 
-    query1 = `INSERT INTO Patrons (patron_first_name, patron_last_name, patron_phone_number) VALUES ('${data.patron_first_name}', '${data.patron_last_name}', '${data.patron_phone_number}')`;
+    query1 = `INSERT INTO Patrons (patron_first_name, patron_last_name, patron_phone_number) VALUES ('${patron_first_name}', '${patron_last_name}', '${data.patron_phone_number}')`;
     // patron_phone_number is varchar
     db.pool.query(query1, function (error, rows, fields) {
 
@@ -215,9 +248,17 @@ app.post('/add-publisher-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
+    let publisher_name = data.publisher_name
+
+    publisher_name = publisher_name.split("'").join("''")
+
+    let publisher_country = data.publisher_country
+
+    publisher_country = publisher_country.split("'").join("''")
+
     // Create the query and run it on the database
 
-    query1 = `INSERT INTO Publishers (publisher_name, publisher_country) VALUES ('${data.publisher_name}', '${data.publisher_country}')`;
+    query1 = `INSERT INTO Publishers (publisher_name, publisher_country) VALUES ('${publisher_name}', '${publisher_country}')`;
     db.pool.query(query1, function (error, rows, fields) {
 
         // Check to see if there was an error
