@@ -29,8 +29,8 @@
 <form id="add-book-ajax">
     <fieldset>
         <legend><b>Add a Book</b></legend>
-        <p>To add a new book, please enter their information below and click 'Submit'! If a book has multiple authors, please navigate to the 'Books and their Authors' page to add additional authors.
-        If the book is not checked out, select None for Patron and leave Due Date blank.</p>
+        <p>To add a new book, please enter the its information below and click 'Submit'! If a book has multiple authors, please navigate to the 'Books and their Authors' page to add additional authors.
+        If the book is not checked out, select None for Patron ID and leave Due Date blank.</p>
 
         <label for="input-title_name">Title Name: </label>
         <input type="text" name="input-title_name" id="input-title_name">
@@ -43,7 +43,7 @@
             {{/each}}
         </select>
 
-        <label for="input-genre_id">Genre Name: </label>
+        <label for="input-genre_id">Genre: </label>
         <select name="input-genre_id" id="input-genre_id">
             <option value="test">Select a Genre</option>
             {{#each genres}}
@@ -51,7 +51,7 @@
             {{/each}}
         </select>
     
-        <label for="input-publisher_id">Publisher ID: </label>
+        <label for="input-publisher_id">Publisher: </label>
         <select name="input-publisher_id" id="input-publisher_id">
             <option value="test">Select a Publisher</option>
             {{#each publishers}}
@@ -64,7 +64,7 @@
             <option value="test">Select a Patron</option>
             <option value=NULL>(None)</option>
             {{#each patrons}}
-            <option value="{{this.patron_id}}">{{this.patron_last_name}}, {{this.patron_first_name}}</option>
+            <option value="{{this.patron_id}}">{{this.patron_id}}: {{this.patron_first_name}} {{this.patron_last_name}}</option>
             {{/each}}
         </select>
 
@@ -94,23 +94,23 @@
 <form id="update-book-form-ajax">
     <fieldset>
         <legend><b>Update a Book</b></legend>
-        <p>To update a specific book select their Book ID from the drop-down menu on the left and their Patron Name from the drop down menu in the middle and the Due Date on the right.
-        To check out a book, add the Patron and Due Date. To return a book, select Patron as None and leave Due Date blank.</p>
+        <p>To update the lending status of a specific book, select the book's Book ID from the drop-down menu on the left, select the borrower's Patron ID from the drop-down menu in the middle, and specify the Due Date in the input field on the right.
+        To check out a book, select a Patron ID and specify a Due Date. To return a book, select Patron ID as None and leave Due Date blank.</p>
 
         <label for="input-book_id-update">Book ID: </label>
         <select name="input-book_id" id="input-book_id-update">
             <option>Select a Book ID</option>
             {{#each books}}
-            <option value="{{this.book_id}}">{{this.book_id}}</option>
+            <option value="{{this.book_id}}">{{this.book_id}}: {{this.title_name}}</option>
             {{/each}}
         </select>
 
-        <label for="input-patron_id-update">Patron: </label>
+        <label for="input-patron_id-update">Patron ID: </label>
         <select name="input-patron_id" id="input-patron_id-update">
             <option>Select a Patron</option>
             <option value=NULL>(None)</option>
             {{#each patrons}}
-            <option value="{{this.patron_id}}">{{this.patron_last_name}}, {{this.patron_first_name}}</option>
+            <option value="{{this.patron_id}}">{{this.patron_id}}: {{this.patron_first_name}} {{this.patron_last_name}}</option>
             {{/each}}
         </select>
 
