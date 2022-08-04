@@ -23,11 +23,10 @@ updateBooksAuthorsForm.addEventListener("submit", function (e) {
     let bookAuthorIDValue = inputBookAuthorID.value;
     let authorIDValue = inputAuthorID.value;
     
-    // Data Validation
-
-    if (isNaN(authorIDValue)) 
+    // Data Validation 
+    if (!bookAuthorIDValue || !authorIDValue)
     {
-        alert("Author ID not selected")
+        alert("Book-Author ID and Author ID are required fields.")
         return;
     }
 
