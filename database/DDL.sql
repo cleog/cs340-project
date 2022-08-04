@@ -77,7 +77,7 @@ CREATE TABLE Books (
  book_id int NOT NULL AUTO_INCREMENT UNIQUE,
  publisher_id int NOT NULL,
  genre_id int NOT NULL,
- title_name varchar(60),
+ title_name varchar(255),
  due_date date,
  patron_id int,
  PRIMARY KEY (book_id),
