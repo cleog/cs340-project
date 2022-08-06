@@ -43,11 +43,11 @@ app.post('/add-book-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
-    let patron_id = data.patron_id
+    let patron_id = parseInt(data.patron_id)
 
     let due_date = '\'' + data.due_date + '\''
 
-    if (patron_id === 'None') {
+    if (isNaN(patron_id)) {
         patron_id = 'NULL'
         due_date = 'NULL'
     }
@@ -368,9 +368,9 @@ app.put('/put-book-ajax', function (req, res, next) {
     let data = req.body;
 
     let bookID = parseInt(data.book_id);
-    let patronID = data.patron_id;
+    let patronID = parseInt(data.patron_id);
     let dueDate = '\'' + data.due_date + '\''
-    if (patronID === 'None') {
+    if (isNaN(patronID)) {
         patronID = 'NULL'
         dueDate = 'NULL'
     }
