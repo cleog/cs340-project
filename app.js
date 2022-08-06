@@ -368,9 +368,9 @@ app.put('/put-book-ajax', function (req, res, next) {
     let data = req.body;
 
     let bookID = parseInt(data.book_id);
-    let patronID = parseInt(data.patron_id);
+    let patronID = data.patron_id;
     let dueDate = '\'' + data.due_date + '\''
-    if (isNaN(patronID)) {
+    if (patronID === 'None') {
         patronID = 'NULL'
         dueDate = 'NULL'
     }

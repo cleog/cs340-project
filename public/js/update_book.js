@@ -27,9 +27,15 @@ updateBookForm.addEventListener("submit", function (e) {
     
     // data validation 
 
-    if (isNaN(bookIDValue)) 
+    if (isNaN(bookIDValue))
     {
-        alert("Book ID not entered")
+        alert("Book ID not selected")
+        return;
+    }
+
+    if (patronValue !== 'None' && isNaN(patronValue)) 
+    {
+        alert("Patron ID not selected")
         return;
     }
 
