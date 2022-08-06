@@ -41,13 +41,13 @@ updateBookForm.addEventListener("submit", function (e) {
 
     if (dueDateValue === '' && patronValue !== 'None')
     {
-        alert("To return a book, due date must be blank and patron id must be None")
+        alert("To return a book, Due Date must be blank and Patron ID must be None. Otherwise select a Due Date.")
         return;
     }
 
     if (patronValue === 'None' && dueDateValue !== '')
     {
-        alert("2 To return a book, due date must be blank and patron id must be None")
+        alert("To return a book, Due Date must be blank and Patron ID must be None. Otherwise select a Patron ID.")
         return;
     }
 
