@@ -47,6 +47,18 @@ addBookForm.addEventListener("submit", function (e) {
         return;
     } 
 
+    if (dueDateValue === '' && patronIDValue !== 'None')
+    {
+        alert("To return a book, due date must be blank and patron id must be None")
+        return;
+    }
+
+    if (patronIDValue === 'None' && dueDateValue !== '')
+    {
+        alert("2 To return a book, due date must be blank and patron id must be None")
+        return;
+    }
+
 
     // Put our data we want to send in a javascript object
     let data = {
