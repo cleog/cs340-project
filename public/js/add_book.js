@@ -34,7 +34,7 @@ addBookForm.addEventListener("submit", function (e) {
 
     // data validation
 
-    if ((!titleNameValue) || (authorIDValue === '') || (genreIDValue === '') || (publisherIDValue == ''))
+    if ((!titleNameValue) || (authorIDValue === '') || (genreIDValue === '') || (publisherIDValue === ''))
     {
         alert("Title Name, Author, Genre, and Publisher are required fields.")
         return;
