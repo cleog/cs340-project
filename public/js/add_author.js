@@ -23,6 +23,24 @@ addAuthorForm.addEventListener("submit", function (e) {
     let authorFirstNameValue = inputAuthorFirstName.value;
     let authorLastNameValue = inputAuthorLastName.value;
 
+    if (!authorFirstNameValue && !authorLastNameValue)
+    {
+        alert("Author First Name and Last Name not entered. Please try again.")
+        return;
+    }
+
+    if (!authorFirstNameValue) 
+    {
+        alert("Author First Name not entered. Please try again.")
+        return;
+    }
+
+    if (!authorLastNameValue)
+    {
+        alert("Author Last Name not entered. Please try again.")
+        return;
+    }
+
     // Put our data we want to send in a javascript object
     // having this as data may cause an issue?
     let data = {

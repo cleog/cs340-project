@@ -24,15 +24,20 @@ addGenreForm.addEventListener("submit", function (e) {
     let genreDescriptionValue = inputGenreDescription.value;
 
     // Data Validation
+    if (!genreNameValue && !genreDescriptionValue)
+    {
+        alert("Genre Name and Description not entered. Please try again.")
+    }
+
     if (!genreNameValue)
     {
-        alert("Genre Name not entered")
+        alert("Genre Name not entered. Please try again.")
         return;
     }
 
     if (!genreDescriptionValue)
     {
-        alert("Genre Description not entered")
+        alert("Genre Description not entered. Please try again.")
         return;
     }
 
