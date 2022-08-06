@@ -34,11 +34,19 @@ addBookForm.addEventListener("submit", function (e) {
 
     // data validation
 
+    if (patronIDValue === '')
+    {
+        alert("Patron ID not selected")
+        return;
+    }
+    
+
     if ((!titleNameValue) || (authorIDValue === '') || (genreIDValue === '') || (publisherIDValue === ''))
     {
         alert("Title Name, Author, Genre, and Publisher are required fields.")
         return;
     } 
+
 
     // Put our data we want to send in a javascript object
     let data = {

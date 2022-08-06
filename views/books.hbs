@@ -63,7 +63,7 @@
         <label for="input-patron_id">Patron ID: </label>
         <select name="input-patron_id" id="input-patron_id">
             <option value="">Select a Patron ID</option>
-            <option value=NULL>(None)</option>
+            <option value='None'>(None)</option>
             {{#each patrons}}
             <option value="{{this.patron_id}}">{{this.patron_id}}: {{this.patron_first_name}} {{this.patron_last_name}}</option>
             {{/each}}
