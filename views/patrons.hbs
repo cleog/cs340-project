@@ -4,7 +4,14 @@
         Author(s): gkochera (George Kochera), Cortona1, currym-osu (Dr. Michael Curry), dmgs11
         Source Type: source code and information guide
         Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-        Date Accessed: 7/25/2022 --}}
+        Date Accessed: 7/25/2022
+        
+        Input field for patron phone number is adapted from:
+        Source Title: HTML <input type="tel">
+        Author(s): W3Schools
+        Source Type: code snippet and reference guide
+        Source URL: https://www.w3schools.com/tags/att_input_type_tel.asp
+        Date Accessed: 8/6/2022 --}}
 
 <link rel="stylesheet" href="./css/page.css">
 
@@ -29,18 +36,17 @@
 <form id="add-patron-ajax">
     <fieldset>
         <legend><b>Add a Patron</b></legend>
-        <p>To add a new patron, please enter their information below and click 'Submit'!.</p>
+        <p>To add a new patron, please enter their information below and click 'Submit'!<br>
+            Phone number should be entered using the following format: 123-456-7890.</p>
 
         <label for="input-patron_first_name">Patron First Name: </label>
         <input type="text" name="input-patron_first_name" id="input-patron_first_name">
     
-        
         <label for="input-patron_last_name">Patron Last Name: </label>
         <input type="text" name="input-patron_last_name" id="input-patron_last_name">
 
         <label for="input-patron_phone_number">Patron Phone Number: </label>
-        <input type="text" name="input-patron_phone_number" id="input-patron_phone_number">
-
+        <input type="tel" name="input-patron_phone_number" id="input-patron_phone_number" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
 
         <input type="submit">
     </fieldset>
