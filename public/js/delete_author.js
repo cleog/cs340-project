@@ -26,7 +26,9 @@ function deleteAuthor(authorID) {
   function deleteRow(authorID){
       let table = document.getElementById("authors");
       for (let i = 0, row; row = table.rows[i]; i++) {
-         if (table.rows[i].getAttribute("data-value") == authorID) {
+          //iterate through rows
+          //rows would be accessed using the "row" variable assigned in the for loop
+          if (table.rows[i].getAttribute("data-value") == authorID) {
               table.deleteRow(i);
               break;
          }

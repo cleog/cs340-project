@@ -26,7 +26,9 @@ function deletePatron(patronID) {
   function deleteRow(patronID){
       let table = document.getElementById("patrons");
       for (let i = 0, row; row = table.rows[i]; i++) {
-         if (table.rows[i].getAttribute("data-value") == patronID) {
+          //iterate through rows
+          //rows would be accessed using the "row" variable assigned in the for loop
+          if (table.rows[i].getAttribute("data-value") == patronID) {
               table.deleteRow(i);
               break;
          }

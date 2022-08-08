@@ -38,9 +38,9 @@ function deleteRow(book_author_id){
 
     let table = document.getElementById("books-authors-table");
     for (let i = 0, row; row = table.rows[i]; i++) {
-       //iterate through rows
-       //rows would be accessed using the "row" variable assigned in the for loop
-       if (table.rows[i].getAttribute("data-value") == book_author_id) {
+        //iterate through rows
+        //rows would be accessed using the "row" variable assigned in the for loop
+        if (table.rows[i].getAttribute("data-value") == book_author_id) {
             table.deleteRow(i);
             deleteDropDownMenu(book_author_id);
             break;
