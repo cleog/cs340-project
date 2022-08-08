@@ -64,7 +64,7 @@ CREATE TABLE Patrons (
  
 CREATE TABLE Publishers (
  publisher_id int NOT NULL AUTO_INCREMENT UNIQUE,
- publisher_name varchar(128) NOT NULL UNIQUE,
+ publisher_name varchar(255) NOT NULL UNIQUE,
  publisher_country varchar(45) NOT NULL,
  PRIMARY KEY (publisher_id)
 );
@@ -77,7 +77,7 @@ CREATE TABLE Books (
  book_id int NOT NULL AUTO_INCREMENT UNIQUE,
  publisher_id int NOT NULL,
  genre_id int NOT NULL,
- title_name varchar(255),
+ title_name varchar(128),
  due_date date,
  patron_id int,
  PRIMARY KEY (book_id),
@@ -148,10 +148,7 @@ INSERT INTO Books (title_name, genre_id, publisher_id, patron_id, due_date) VALU
 (SELECT publisher_id from Publishers where publisher_name='DC Comics'), NULL, NULL),
 
 ('American Gods', (SELECT genre_id from Genres where genre_name='Fantasy'), 
-(SELECT publisher_id from Publishers where publisher_name='William Morrow Paperbacks'), NULL, NULL),
-
-('Good Omens', (SELECT genre_id from Genres where genre_name='Fantasy'), 
-(SELECT publisher_id from Publishers where publisher_name='HarperCollins'), NULL, NULL);
+(SELECT publisher_id from Publishers where publisher_name='William Morrow Paperbacks'), NULL, NULL);
 
 
 INSERT INTO Books_Authors (book_id, author_id) 
