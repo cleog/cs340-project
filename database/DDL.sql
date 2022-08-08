@@ -64,7 +64,7 @@ CREATE TABLE Patrons (
  
 CREATE TABLE Publishers (
  publisher_id int NOT NULL AUTO_INCREMENT UNIQUE,
- publisher_name varchar(255) NOT NULL UNIQUE,
+ publisher_name varchar(128) NOT NULL UNIQUE,
  publisher_country varchar(45) NOT NULL,
  PRIMARY KEY (publisher_id)
 );
@@ -77,7 +77,7 @@ CREATE TABLE Books (
  book_id int NOT NULL AUTO_INCREMENT UNIQUE,
  publisher_id int NOT NULL,
  genre_id int NOT NULL,
- title_name varchar(128),
+ title_name varchar(128) NOT NULL,
  due_date date,
  patron_id int,
  PRIMARY KEY (book_id),
