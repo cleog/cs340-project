@@ -32,33 +32,24 @@ addBookForm.addEventListener("submit", function (e) {
     let patronIDValue = inputPatronID.value;
     let dueDateValue = inputDueDate.value;
 
-    // data validation
-
-    if (patronIDValue === '')
+    // Validate user input
+    if ((!titleNameValue) || (authorIDValue === '') || (genreIDValue === '') || (publisherIDValue === '') || (patronIDValue === ''))
     {
-        alert("Patron ID not selected")
-        return;
-    }
-    
-
-    if ((!titleNameValue) || (authorIDValue === '') || (genreIDValue === '') || (publisherIDValue === ''))
-    {
-        alert("Title Name, Author, Genre, and Publisher are required fields.")
+        alert("Title Name, Author, Genre, Publisher, and Patron ID are required fields.")
         return;
     } 
 
     if (dueDateValue === '' && patronIDValue !== 'None')
     {
-        alert("If a Patron ID is selected, then a Due Date must be selected. Otherwise, please select (None) for Patron ID and leave Due Date blank to put the book on the shelf.")
+        alert("If a patron's Patron ID is selected, then a Due Date must be specified. Otherwise, please select (None) for Patron ID and leave Due Date blank for a book that is not checked out.")
         return;
     }
 
     if (patronIDValue === 'None' && dueDateValue !== '')
     {
-        alert("If a Due Date is selected, a Patron ID must be selected. Otherwise, please select (None) for Patron ID and leave Due Date blank to put the book on the shelf.")
+        alert("If a Due Date is specified, then a patron's Patron ID must be selected. Otherwise, please select (None) for Patron ID and leave Due Date blank for a book that is not checked out.")
         return;
     }
-
 
     // Put our data we want to send in a javascript object
     let data = {
@@ -101,8 +92,7 @@ addBookForm.addEventListener("submit", function (e) {
 })
 
 
-// Creates a single row from an Object representing a single record from 
-// bsg_people
+// Creates a single row from an Object representing a single record from Books
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
@@ -115,7 +105,7 @@ addRowToTable = (data) => {
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-    // Create a row and 4 cells
+    // Create a row and 7 cells
     let row = document.createElement("TR");
     let bookIDCell = document.createElement("TD");
     let titleNameCell = document.createElement("TD");
@@ -125,7 +115,6 @@ addRowToTable = (data) => {
     let dueDateCell = document.createElement("TD");
 
     let deleteCell = document.createElement("TD");
-
 
     // Fill the cells with correct data
     bookIDCell.innerText = newRow.book_id;
@@ -140,7 +129,6 @@ addRowToTable = (data) => {
     deleteCell.onclick = function(){
         deleteBook(newRow.book_id);
     };
-
 
     // Add the cells to the row 
     row.appendChild(bookIDCell);
@@ -157,10 +145,8 @@ addRowToTable = (data) => {
     // Add the row to the table
     currentTable.appendChild(row);
 
-    // Start of new Step 8 code for adding new data to the dropdown menu for updating people
-    
-    // // Find drop down menu, create a new option, fill data in the option (full name, id),
-    // // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
+    // Find drop down menu, create a new option, fill data in the option,
+    // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
     let selectMenu = document.getElementById("input-book_id-update");
     let option = document.createElement("option");
     option.text = newRow.book_id + ': ' + newRow.title_name; 

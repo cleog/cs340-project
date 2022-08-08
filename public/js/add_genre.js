@@ -23,26 +23,14 @@ addGenreForm.addEventListener("submit", function (e) {
     let genreNameValue = inputGenreName.value;
     let genreDescriptionValue = inputGenreDescription.value;
 
-    // Data Validation
-    if (!genreNameValue && !genreDescriptionValue)
+    // Validate user input
+    if (!genreNameValue || !genreDescriptionValue)
     {
-        alert("Genre Name and Description not entered. Please try again.")
-    }
-
-    if (!genreNameValue)
-    {
-        alert("Genre Name not entered. Please try again.")
-        return;
-    }
-
-    if (!genreDescriptionValue)
-    {
-        alert("Genre Description not entered. Please try again.")
+        alert("Genre Name and Genre Description are required fields.")
         return;
     }
 
     // Put our data we want to send in a javascript object
-    // having this as data may cause an issue?
     let data = {
         genre_name: genreNameValue,
         genre_description: genreDescriptionValue
