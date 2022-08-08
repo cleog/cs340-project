@@ -93,7 +93,7 @@ CREATE TABLE Books (
 --
  
 CREATE TABLE Books_Authors (
- book_author_id int AUTO_INCREMENT NOT NULL UNIQUE,
+ book_author_id int NOT NULL AUTO_INCREMENT UNIQUE,
  book_id int NOT NULL,
  author_id int NOT NULL,
  PRIMARY KEY (book_author_id),
