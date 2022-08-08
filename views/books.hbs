@@ -29,8 +29,8 @@
 <form id="add-book-ajax">
     <fieldset>
         <legend><b>Add a Book</b></legend>
-        <p>To add a new book, please enter the its information below and click 'Submit'! If a book has multiple authors, please navigate to the 'Books and their Authors' page to add additional authors.
-        If the book is not checked out, leave Patron ID blank (or select None for Patron ID) and leave Due Date blank.</p>
+        <p>To add a new book, please enter the information below and click 'Submit'! If a book has multiple authors, please navigate to the 'Books and their Authors' page to add additional authors.
+        If the book is not checked out, select (None) for Patron ID and leave Due Date blank.</p>
 
         <label for="input-title_name">Title Name: </label>
         <input type="text" name="input-title_name" id="input-title_name">
@@ -79,6 +79,7 @@
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_book.js"></script>
 
+{{!-- Form to search the table for a record  --}}
 <form id="search-book-html" method='GET' action='/books'>
     <fieldset>
         <legend><b>Search for a Book</b></legend>
@@ -92,15 +93,16 @@
     </fieldset>
 </form>
 
+{{!-- Form to update a record in the table  --}}
 <form id="update-book-form-ajax">
     <fieldset>
         <legend><b>Update a Book</b></legend>
-        <p>To update the lending status of a specific book, select the book's Book ID from the drop-down menu on the left, select the borrower's Patron ID from the drop-down menu in the middle, and specify the Due Date in the input field on the right.
-        To check out a book, select a Patron ID and specify a Due Date. To return a book, select Patron ID as None and leave Due Date blank.</p>
+        <p>To check out a book, select the book's Book ID from the drop-down menu on the left, select the borrower's Patron ID from the drop-down menu in the middle, and specify the Due Date in the input field on the right.
+        To return a book, select (None) for Patron ID and leave Due Date blank.</p>
 
         <label for="input-book_id-update">Book ID: </label>
         <select name="input-book_id" id="input-book_id-update">
-            <option>Select a Book ID</option>
+            <option value="">Select a Book ID</option>
             {{#each books}}
             <option value="{{this.book_id}}">{{this.book_id}}: {{this.title_name}}</option>
             {{/each}}
@@ -108,7 +110,7 @@
 
         <label for="input-patron_id-update">Patron ID: </label>
         <select name="input-patron_id" id="input-patron_id-update">
-            <option>Select a Patron ID</option>
+            <option value="">Select a Patron ID</option>
             <option value='None'>(None)</option>
             {{#each patrons}}
             <option value="{{this.patron_id}}">{{this.patron_id}}: {{this.patron_first_name}} {{this.patron_last_name}}</option>
@@ -129,9 +131,6 @@
 
     {{!-- Header section --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             <th>Book ID</th>
             <th>Title Name</th>
@@ -145,8 +144,6 @@
 
     {{!-- Body section --}}
     <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each books}}
         <tr data-value={{this.book_id}}>
             <td>{{this.book_id}}</td>

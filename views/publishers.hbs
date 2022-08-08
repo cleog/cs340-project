@@ -29,7 +29,7 @@
 <form id="add-publisher-ajax">
     <fieldset>
         <legend><b>Add a Publisher</b></legend>
-        <p>To add a new publisher, please enter their information below and click 'Submit'! All fields are required.</p>
+        <p>To add a new publisher, please enter the information below and click 'Submit'! Both fields are required.</p>
 
         <label for="input-publsiher_name">Publisher Name: </label>
         <input type="text" name="input-publsiher_name" id="input-publisher_name">
@@ -50,9 +50,6 @@
 
     {{!-- Header section --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             <th>Publisher ID</th>
             <th>Publisher Name</th>
@@ -63,8 +60,6 @@
 
     {{!-- Body section --}}
     <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each publishers}}
         <tr data-value={{this.publisher_id}}>
             <td>{{this.publisher_id}}</td>

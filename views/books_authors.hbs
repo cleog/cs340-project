@@ -22,7 +22,7 @@
 
 <h1>Books and their Authors</h2>
 
-<p class="page_instructions">Use this page to view a book's authors, assign a new author to a book, disassociate an author with a book,
+<p class="page_instructions">Use this page to view a book's authors, associate an author with a book, disassociate an author with a book,
     and change/update an author currently associated with a book.</p>
 <p>---</p>
 
@@ -30,7 +30,7 @@
 <form id="add-books-authors-form-ajax">
     <fieldset>
         <legend><b>Associate an Author with a Book</b></legend>
-        <p>To associate an author with a book, please select a Book ID and Author ID from the below drop-downs and click 'Submit'!</p>
+        <p>To associate an author with a book, please select a Book ID and Author ID from the below drop-down menus and click 'Submit'!</p>
         
         <label for="input-book-id">Book ID: </label>
         <select name="input-book-id" id="input-book-id">
@@ -55,11 +55,12 @@
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_books_authors.js"></script>
 
+{{!-- Form to update a record in the table  --}}
 <form id="update-books-authors-form-ajax">
     <fieldset>
         <legend><b>Update an Existing Author Associated with a Book</b></legend>
         <p>To update the author that is currently associated with a book, select the Book-Author ID you'd like to modify from the drop-down
-        menu on the left and the new Author ID from the drop down menu on the right.</p>
+        menu on the left and the new Author ID from the drop-down menu on the right.</p>
 
         <label for="input-book-author-id">Book-Author ID: </label>
         <select name="input-book-author-id" id="input-book-author-id-update">
@@ -112,4 +113,3 @@
     </tbody>
 </table>
 <script src="./js/delete_books_authors.js"></script>
-

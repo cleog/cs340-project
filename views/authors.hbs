@@ -29,7 +29,7 @@
 <form id="add-author-ajax">
     <fieldset>
         <legend><b>Add an Author</b></legend>
-        <p>To add a new author, please enter their information below and click 'Submit'! Author First Name and Last Name are required fields.</p>
+        <p>To add a new author, please enter their information below and click 'Submit'! Both fields are required.</p>
         
         <label for="input-author_first_name">Author First Name: </label>
         <input type="text" name="input-author_first_name" id="input-author_first_name">
@@ -50,9 +50,6 @@
 
     {{!-- Header section --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             <th>Author ID</th>
             <th>Author First Name</th>
@@ -63,8 +60,6 @@
 
     {{!-- Body section --}}
     <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each authors}}
         <tr data-value={{this.author_id}}>
             <td>{{this.author_id}}</td>
@@ -76,4 +71,3 @@
     </tbody>
 </table>
 <script src="./js/delete_author.js"></script>
-
