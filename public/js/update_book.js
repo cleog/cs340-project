@@ -17,45 +17,32 @@ updateBookForm.addEventListener("submit", function (e) {
 
     // Get form fields we need to get data from
     let inputBookID = document.getElementById("input-book_id-update");
-    let inputPatron = document.getElementById("input-patron_id-update");
+    let inputPatronID = document.getElementById("input-patron_id-update");
     let inputDueDate = document.getElementById("input-due_date-update");
 
     // Get the values from the form fields
     let bookIDValue = inputBookID.value;
-    let patronValue = inputPatron.value;
+    let patronIDValue = inputPatronID.value;
     let dueDateValue = inputDueDate.value;
     
-    // data validation 
-
-    if (isNaN(bookIDValue))
+    // Validate user input 
+    if ((bookIDValue === '') || (patronIDValue === ''))
     {
-        alert("Book ID not selected")
+        alert("Book ID and Patron ID are required fields.")
         return;
     }
 
-    if (patronValue !== 'None' && isNaN(patronValue)) 
+    if (dueDateValue === '' && patronIDValue !== 'None' || patronIDValue === 'None' && dueDateValue !== '')
     {
-        alert("Patron ID not selected")
-        return;
-    }
-
-    if (dueDateValue === '' && patronValue !== 'None')
-    {
-        alert("To return a book, Due Date must be blank and Patron ID must be None. Otherwise select a Due Date.")
-        return;
-    }
-
-    if (patronValue === 'None' && dueDateValue !== '')
-    {
-        alert("To return a book, Due Date must be blank and Patron ID must be None. Otherwise select a Patron ID.")
+        alert("To return a book, select (None) for Patron ID and leave Due Date blank. To check out a book, select the patron's Patron ID and specify a Due Date.")
         return;
     }
 
     // Put our data we want to send in a javascript object
     let data = {
         book_id: bookIDValue,
-        patron_id: patronValue,
-        due_date: dueDateValue.substring(0, 10) // not working?
+        patron_id: patronIDValue,
+        due_date: dueDateValue
     }
     
     // Setup our AJAX request
@@ -70,6 +57,10 @@ updateBookForm.addEventListener("submit", function (e) {
             // Add the new data to the table
             updateRow(xhttp.response, bookIDValue);
 
+            // Clear the input fields for another transaction
+            inputBookID.value = '';
+            inputPatronID.value = '';
+            inputDueDate.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -92,7 +83,7 @@ function updateRow(data, bookID){
        //rows would be accessed using the "row" variable assigned in the for loop
        if (table.rows[i].getAttribute("data-value") == bookID) {
 
-            // Get the location of the row where we found the matching person ID
+            // Get the location of the row where we found the matching Book ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
             // Get td of patron_id value
@@ -104,9 +95,8 @@ function updateRow(data, bookID){
             // Get td of due_date value
             let td_date = updateRowIndex.getElementsByTagName("td")[5];
 
-            // Reassign due_date to our value we updated to. TODO: Same date format?
+            // Reassign due_date to our value we updated to
             td_date.innerHTML = parsedData[0].due_date; 
-
 
         }
     }

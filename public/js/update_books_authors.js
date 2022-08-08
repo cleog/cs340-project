@@ -23,13 +23,12 @@ updateBooksAuthorsForm.addEventListener("submit", function (e) {
     let bookAuthorIDValue = inputBookAuthorID.value;
     let authorIDValue = inputAuthorID.value;
     
-    // Data Validation 
+    // Validate user input
     if (!bookAuthorIDValue || !authorIDValue)
     {
         alert("Book-Author ID and Author ID are required fields.")
         return;
     }
-
 
     // Put our data we want to send in a javascript object
     let data = {
@@ -49,6 +48,9 @@ updateBooksAuthorsForm.addEventListener("submit", function (e) {
             // Add the new data to the table
             updateRow(xhttp.response, bookAuthorIDValue);
 
+            // Clear the input fields for another transaction
+            inputBookAuthorID.value = '';
+            inputAuthorID.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -71,13 +73,13 @@ function updateRow(data, bookAuthorID){
        //rows would be accessed using the "row" variable assigned in the for loop
        if (table.rows[i].getAttribute("data-value") == bookAuthorID) {
 
-            // Get the location of the row where we found the matching person ID
+            // Get the location of the row where we found the matching Book-Author ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            // Get td of homeworld value
+            // Get td of Author ID value
             let td = updateRowIndex.getElementsByTagName("td")[2];
 
-            // Reassign homeworld to our value we updated to
+            // Reassign Author ID to our value we updated to
             td.innerHTML = parsedData[0].author_id; 
        }
     }
